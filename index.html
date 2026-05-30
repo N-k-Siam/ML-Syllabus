@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ML Career Syllabus — Python to LLM + RAG</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:       #ffffff;
+    --bg2:      #f5f5f5;
+    --bg3:      #ebebeb;
+    --bg4:      #ffffff;
+    --border:   #e0e0e0;
+    --border2:  #cccccc;
+    --text:     #1a1712;
+    --text2:    #5a5245;
+    --text3:    #9a9080;
+    --accent:   #2d6a4f;   /* forest green */
+    --accent2:  #1d4e89;   /* deep blue */
+    --accent3:  #b5460f;   /* terracotta */
+    --accent4:  #7b2d8b;   /* plum */
+    --accent5:  #0f6b8a;   /* teal */
+    --gold:     #c07c1a;
+    --red:      #c0392b;
+    --mono: 'DM Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+    --serif: 'DM Serif Display', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  /* HEADER */
+  header {
+    border-bottom: 2px solid var(--border);
+    padding: 24px 32px 16px;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .header-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  h1 span { color: var(--text3); font-family: var(--mono); font-size: 14px; font-weight: 400; }
+  .meta { font-size: 12px; color: var(--text3); margin-top: 3px; font-family: var(--mono); }
+
+  /* SEARCH */
+  .search-wrap { position: relative; flex: 1; max-width: 380px; min-width: 200px; }
+  #search {
+    width: 100%;
+    background: var(--bg4);
+    border: 1.5px solid var(--border2);
+    border-radius: 8px;
+    padding: 9px 14px 9px 36px;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 12px;
+    outline: none;
+    transition: border-color .2s, box-shadow .2s;
+  }
+  #search:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(45,106,79,0.1); }
+  #search::placeholder { color: var(--text3); }
+  .search-icon { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); color: var(--text3); font-size: 15px; pointer-events: none; }
+  #result-count { font-size: 11px; color: var(--text3); font-family: var(--mono); margin-top: 5px; }
+
+  /* STATS */
+  .stats { display: flex; gap: 20px; flex-wrap: wrap; }
+  .stat { display: flex; align-items: center; gap: 6px; font-size: 12px; }
+  .stat-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .stat-val { font-family: var(--mono); font-weight: 500; color: var(--text); }
+  .stat-label { color: var(--text3); }
+
+  /* LAYOUT */
+  .container { display: flex; min-height: calc(100vh - 130px); }
+
+  /* SIDEBAR */
+  nav {
+    width: 210px; flex-shrink: 0;
+    border-right: 1.5px solid var(--border);
+    padding: 20px 0;
+    position: sticky; top: 130px;
+    height: calc(100vh - 130px);
+    overflow-y: auto;
+    background: var(--bg4);
+  }
+  .nav-phase {
+    display: block; padding: 8px 18px;
+    font-size: 11.5px; font-family: var(--mono);
+    color: var(--text2); cursor: pointer;
+    border-left: 3px solid transparent;
+    transition: all .15s; text-decoration: none;
+  }
+  .nav-phase:hover { color: var(--text); background: var(--bg2); }
+  .nav-phase.active { border-left-color: var(--accent); color: var(--accent); background: rgba(45,106,79,0.07); font-weight: 500; }
+  .nav-label { font-size: 9.5px; letter-spacing: .1em; color: var(--text3); padding: 14px 18px 4px; text-transform: uppercase; font-family: var(--mono); }
+
+  /* MAIN */
+  main { flex: 1; padding: 28px 32px; max-width: 900px; }
+
+  /* PHASE SECTION */
+  .phase-section { margin-bottom: 52px; scroll-margin-top: 150px; }
+  .phase-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 20px; padding-bottom: 14px;
+    border-bottom: 1.5px solid var(--border);
+  }
+  .phase-num {
+    font-family: var(--mono); font-size: 10px;
+    padding: 4px 9px; border-radius: 5px; font-weight: 500;
+  }
+  .phase-title { font-family: var(--serif); font-size: 18px; font-weight: 400; color: var(--text); }
+  .phase-time {
+    margin-left: auto; font-family: var(--mono); font-size: 11px;
+    color: var(--text3); background: var(--bg3);
+    padding: 3px 10px; border-radius: 4px; border: 1px solid var(--border);
+  }
+
+  /* MODULE */
+  .module {
+    margin-bottom: 8px; border: 1.5px solid var(--border);
+    border-radius: 10px; overflow: hidden; transition: border-color .2s, box-shadow .2s;
+    background: var(--bg4);
+  }
+  .module:hover { border-color: var(--border2); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+  .module.highlight { border-color: var(--accent) !important; box-shadow: 0 0 0 3px rgba(45,106,79,0.08) !important; }
+  .module-header {
+    padding: 12px 16px; cursor: pointer;
+    display: flex; align-items: center; gap: 10px;
+    background: var(--bg4); user-select: none;
+  }
+  .module-header:hover { background: var(--bg2); }
+  .module.open .module-header { background: var(--bg2); border-bottom: 1px solid var(--border); }
+  .mod-num { font-family: var(--mono); font-size: 10px; color: var(--text3); min-width: 28px; }
+  .mod-name { font-size: 13px; font-weight: 500; flex: 1; color: var(--text); }
+  .chevron-icon { color: var(--text3); font-size: 11px; transition: transform .2s; flex-shrink: 0; }
+  .module.open .chevron-icon { transform: rotate(180deg); }
+
+  /* DIFFICULTY */
+  .difficulty { display: flex; gap: 3px; align-items: center; }
+  .diff-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border2); }
+  .diff-dot.active { background: var(--accent); }
+
+  /* MODULE BODY */
+  .module-body { display: none; padding: 16px; background: var(--bg); border-top: 1px solid var(--border); }
+  .module.open .module-body { display: block; }
+
+  /* TOPICS */
+  .topic-group { margin-bottom: 16px; }
+  .topic-group-label {
+    font-size: 9.5px; font-family: var(--mono);
+    color: var(--text3); text-transform: uppercase;
+    letter-spacing: .1em; margin-bottom: 8px;
+    padding-bottom: 4px; border-bottom: 1px solid var(--border);
+  }
+  .topic-grid { display: flex; flex-wrap: wrap; gap: 5px; }
+  .topic {
+    font-size: 12px; font-family: var(--mono);
+    padding: 3px 9px; border-radius: 4px;
+    border: 1px solid var(--border); color: var(--text2);
+    background: var(--bg4); cursor: default; transition: all .15s;
+  }
+  .topic:hover { border-color: var(--border2); color: var(--text); background: var(--bg2); }
+  .topic.match {
+    background: rgba(45,106,79,0.1);
+    color: var(--accent); border-color: rgba(45,106,79,0.4);
+    font-weight: 500;
+  }
+
+  /* RESOURCES */
+  .resources {
+    margin-top: 14px; padding-top: 12px;
+    border-top: 1px solid var(--border);
+    display: flex; flex-wrap: wrap; gap: 6px; align-items: center;
+  }
+  .res-label { font-size: 9.5px; font-family: var(--mono); color: var(--text3); text-transform: uppercase; letter-spacing: .08em; margin-right: 4px; }
+  .res-link {
+    font-size: 11px; font-family: var(--mono);
+    padding: 3px 10px; border-radius: 4px;
+    text-decoration: none; border: 1px solid;
+    transition: opacity .15s; display: inline-block;
+  }
+  .res-link:hover { opacity: .7; }
+  .res-free  { color: var(--accent);  border-color: rgba(45,106,79,0.3);  background: rgba(45,106,79,0.07); }
+  .res-book  { color: var(--gold);    border-color: rgba(192,124,26,0.3); background: rgba(192,124,26,0.07); }
+  .res-paper { color: var(--accent2); border-color: rgba(29,78,137,0.3);  background: rgba(29,78,137,0.07); }
+  .res-practice { color: var(--accent4); border-color: rgba(123,45,139,0.3); background: rgba(123,45,139,0.07); }
+
+  /* PROJECT BOX */
+  .project-box {
+    margin-top: 14px; padding: 12px 14px;
+    border-radius: 7px; border-left: 3px solid var(--accent3);
+    background: rgba(181,70,15,0.05);
+  }
+  .project-label {
+    font-size: 9.5px; font-family: var(--mono); color: var(--accent3);
+    text-transform: uppercase; letter-spacing: .08em; margin-bottom: 5px; font-weight: 500;
+  }
+  .project-desc { font-size: 12.5px; color: var(--text2); line-height: 1.65; }
+
+  /* TIP */
+  .tip-box {
+    margin-top: 12px; padding: 10px 14px; border-radius: 7px;
+    border-left: 3px solid var(--accent2); background: rgba(29,78,137,0.05);
+    font-size: 12.5px; color: var(--text2);
+  }
+  .tip-label { font-size: 9.5px; font-family: var(--mono); color: var(--accent2); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 3px; }
+
+  /* NEW: RAG badge */
+  .badge-rag {
+    display: inline-block; font-size: 9px; font-family: var(--mono);
+    padding: 1px 6px; border-radius: 3px; margin-left: 6px;
+    background: rgba(15,107,138,0.12); color: var(--accent5);
+    border: 1px solid rgba(15,107,138,0.3); font-weight: 500; vertical-align: middle;
+  }
+  .badge-llm {
+    display: inline-block; font-size: 9px; font-family: var(--mono);
+    padding: 1px 6px; border-radius: 3px; margin-left: 6px;
+    background: rgba(123,45,139,0.1); color: var(--accent4);
+    border: 1px solid rgba(123,45,139,0.3); font-weight: 500; vertical-align: middle;
+  }
+  .badge-core {
+    display: inline-block; font-size: 9px; font-family: var(--mono);
+    padding: 1px 6px; border-radius: 3px; margin-left: 6px;
+    background: rgba(45,106,79,0.1); color: var(--accent);
+    border: 1px solid rgba(45,106,79,0.3); font-weight: 500; vertical-align: middle;
+  }
+
+  /* NO RESULTS */
+  #no-results {
+    display: none; text-align: center; padding: 60px 20px;
+    color: var(--text3); font-family: var(--mono);
+  }
+  #no-results span { display: block; font-size: 28px; margin-bottom: 8px; }
+  .hidden { display: none !important; }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--bg2); }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+  @media (max-width: 700px) {
+    nav { display: none; }
+    main { padding: 14px; }
+    header { padding: 14px; }
+    .header-top { flex-direction: column; }
+    .search-wrap { max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-top">
+    <div>
+      <h1>ML Syllabus <span>/ python → llm + rag</span></h1>
+      <div class="meta">CSE student · Transformer · LLM Engineering · RAG · SLM · ৬–৮ মাসের complete roadmap</div>
+    </div>
+    <div class="search-wrap">
+      <span class="search-icon">⌕</span>
+      <input id="search" type="text" placeholder="topic খুঁজুন... attention, RAG, LoRA, BPE..." autocomplete="off">
+    </div>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="stat-dot" style="background:var(--accent)"></div><span class="stat-val">6</span><span class="stat-label">phases</span></div>
+    <div class="stat"><div class="stat-dot" style="background:var(--accent2)"></div><span class="stat-val">26</span><span class="stat-label">modules</span></div>
+    <div class="stat"><div class="stat-dot" style="background:var(--accent3)"></div><span class="stat-val">250+</span><span class="stat-label">topics</span></div>
+    <div class="stat"><div class="stat-dot" style="background:var(--accent5)"></div><span class="stat-val">10</span><span class="stat-label">portfolio projects</span></div>
+    <div id="result-count"></div>
+  </div>
+</header>
+
+<div class="container">
+  <nav id="sidebar">
+    <div class="nav-label">Phases</div>
+    <a class="nav-phase active" href="#phase1" onclick="setActive(this)">Phase 1 — Python & Math</a>
+    <a class="nav-phase" href="#phase2" onclick="setActive(this)">Phase 2 — Data Tools</a>
+    <a class="nav-phase" href="#phase3" onclick="setActive(this)">Phase 3 — Classical ML</a>
+    <a class="nav-phase" href="#phase4" onclick="setActive(this)">Phase 4 — Deep Learning</a>
+    <a class="nav-phase" href="#phase5" onclick="setActive(this)">Phase 5 — NLP & LLM</a>
+    <a class="nav-phase" href="#phase5b" onclick="setActive(this)">Phase 5B — RAG Engineering</a>
+    <a class="nav-phase" href="#phase6" onclick="setActive(this)">Phase 6 — MLOps & Jobs</a>
+  </nav>
+
+  <main>
+    <div id="no-results"><span>∅</span>কোনো topic পাওয়া যায়নি।</div>
+
+    <!-- ══════════════════════════ PHASE 1 ══════════════════════════ -->
+    <section class="phase-section" id="phase1">
+      <div class="phase-header">
+        <span class="phase-num" style="background:rgba(45,106,79,.1);color:var(--accent);border:1px solid rgba(45,106,79,.25)">01</span>
+        <span class="phase-title">Python & Mathematics Foundation</span>
+        <span class="phase-time">সপ্তাহ ১–৩</span>
+      </div>
+
+      <div class="module" id="m1">
+        <div class="module-header" onclick="toggleMod('m1')">
+          <span class="mod-num">1.1</span>
+          <span class="mod-name">Python for Machine Learning <span class="badge-core">core</span></span>
+          <div class="difficulty"><div class="diff-dot active"></div><div class="diff-dot"></div><div class="diff-dot"></div></div>
+          <span class="chevron-icon">▾</span>
+        </div>
+        <div class="module-body">
+          <div class="topic-group">
+            <div class="topic-group-label">Core Python</div>
+            <div class="topic-grid">
+              <span class="topic">variables & data types</span><span class="topic">list / dict / set / tuple</span>
+              <span class="topic">list comprehension</span><span class="topic">dict comprehension</span>
+              <span class="topic">f-strings</span><span class="topic">*args & **kwargs</span>
+              <span class="topic">lambda functions</span><span class="topic">map / filter / zip</span>
+              <span class="topic">generators & yield</span><span class="topic">context managers</span>
+              <span class="topic">decorators</span><span class="topic">recursion</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">OOP</div>
+            <div class="topic-grid">
+              <span class="topic">class & object</span><span class="topic">__init__ / __repr__</span>
+              <span class="topic">inheritance</span><span class="topic">dunder methods</span>
+              <span class="topic">dataclasses</span><span class="topic">abstract classes</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Python Ecosystem</div>
+            <div class="topic-grid">
+              <span class="topic">virtual environments</span><span class="topic">pip & conda</span>
+              <span class="topic">Jupyter notebooks</span><span class="topic">type hints & mypy</span>
+              <span class="topic">logging module</span><span class="topic">pathlib</span>
+              <span class="topic">json / pickle / yaml</span><span class="topic">argparse</span>
+            </div>
+          </div>
+          <div class="resources">
+            <span class="res-label">Resources</span>
+            <a class="res-link res-free" href="https://docs.python.org/3/tutorial/" target="_blank">Python Official Docs</a>
+            <a class="res-link res-free" href="https://www.learnpython.org/" target="_blank">learnpython.org</a>
+            <a class="res-link res-book">Book: Fluent Python (Ramalho)</a>
+            <a class="res-link res-practice" href="https://exercism.org/tracks/python" target="_blank">Exercism Python</a>
+          </div>
+          <div class="tip-box"><div class="tip-label">Tip</div>CP background আছে — Python syntax ২ দিনে শেষ করো। OOP এবং generators-এ বেশি সময় দাও।</div>
+        </div>
+      </div>
+
+      <div class="module" id="m2">
+        <div class="module-header" onclick="toggleMod('m2')">
+          <span class="mod-num">1.2</span>
+          <span class="mod-name">Linear Algebra for ML</span>
+          <div class="difficulty"><div class="diff-dot active"></div><div class="diff-dot active"></div><div class="diff-dot"></div></div>
+          <span class="chevron-icon">▾</span>
+        </div>
+        <div class="module-body">
+          <div class="topic-group">
+            <div class="topic-group-label">Vectors & Matrices</div>
+            <div class="topic-grid">
+              <span class="topic">vectors & scalars</span><span class="topic">matrix multiplication</span>
+              <span class="topic">dot product</span><span class="topic">transpose</span>
+              <span class="topic">inverse matrix</span><span class="topic">determinant</span>
+              <span class="topic">rank of matrix</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Advanced — Transformer-এ লাগে</div>
+            <div class="topic-grid">
+              <span class="topic">eigenvalues & eigenvectors</span><span class="topic">SVD</span>
+              <span class="topic">PCA (concept)</span><span class="topic">norms (L1, L2, Frobenius)</span>
+              <span class="topic">orthogonality & projection</span>
+              <span class="topic">tensor — rank, shape, axes</span>
+              <span class="topic">broadcasting rules</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Calculus for Optimization</div>
+            <div class="topic-grid">
+              <span class="topic">derivatives & partial derivatives</span>
+              <span class="topic">chain rule</span><span class="topic">gradient</span>
+              <span class="topic">Jacobian matrix</span><span class="topic">Hessian matrix</span>
+            </div>
+          </div>
+          <div class="resources">
+            <span class="res-label">Resources</span>
+            <a class="res-link res-free" href="https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" target="_blank">3Blue1Brown: Essence of LA</a>
+            <a class="res-link res-free" href="https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/" target="_blank">MIT 18.06 (Strang)</a>
+            <a class="res-link res-book">Book: Mathematics for ML (Deisenroth)</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="module" id="m3">
+        <div class="module-header" onclick="toggleMod('m3')">
+          <span class="mod-num">1.3</span>
+          <span class="mod-name">Statistics & Probability Theory</span>
+          <div class="difficulty"><div class="diff-dot active"></div><div class="diff-dot active"></div><div class="diff-dot"></div></div>
+          <span class="chevron-icon">▾</span>
+        </div>
+        <div class="module-body">
+          <div class="topic-group">
+            <div class="topic-group-label">Probability</div>
+            <div class="topic-grid">
+              <span class="topic">conditional probability</span><span class="topic">Bayes theorem</span>
+              <span class="topic">joint & marginal distributions</span>
+              <span class="topic">expectation & variance</span><span class="topic">covariance</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Distributions</div>
+            <div class="topic-grid">
+              <span class="topic">Normal / Gaussian</span><span class="topic">Bernoulli & Binomial</span>
+              <span class="topic">Softmax distribution</span><span class="topic">Beta & Dirichlet</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Information Theory — LLM-এ গুরুত্বপূর্ণ</div>
+            <div class="topic-grid">
+              <span class="topic">entropy (Shannon)</span><span class="topic">cross-entropy</span>
+              <span class="topic">KL divergence</span><span class="topic">mutual information</span>
+              <span class="topic">perplexity</span>
+            </div>
+          </div>
+          <div class="resources">
+            <span class="res-label">Resources</span>
+            <a class="res-link res-free" href="https://www.youtube.com/c/StatQuestWithJoshStarmer" target="_blank">StatQuest (YouTube)</a>
+            <a class="res-link res-free" href="https://seeing-theory.brown.edu/" target="_blank">Seeing Theory (visual)</a>
+            <a class="res-link res-book">Book: Think Stats (Downey)</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════ PHASE 2 ══════════════════════════ -->
+    <section class="phase-section" id="phase2">
+      <div class="phase-header">
+        <span class="phase-num" style="background:rgba(29,78,137,.1);color:var(--accent2);border:1px solid rgba(29,78,137,.25)">02</span>
+        <span class="phase-title">Data Tools — NumPy · Pandas · Visualization</span>
+        <span class="phase-time">সপ্তাহ ৩–৬</span>
+      </div>
+
+      <div class="module" id="m4">
+        <div class="module-header" onclick="toggleMod('m4')">
+          <span class="mod-num">2.1</span><span class="mod-name">NumPy — Numerical Computing</span>
+          <div class="difficulty"><div class="diff-dot active"></div><div class="diff-dot active"></div><div class="diff-dot"></div></div>
+          <span class="chevron-icon">▾</span>
+        </div>
+        <div class="module-body">
+          <div class="topic-group">
+            <div class="topic-group-label">Array Fundamentals</div>
+            <div class="topic-grid">
+              <span class="topic">ndarray creation</span><span class="topic">zeros / ones / arange / linspace</span>
+              <span class="topic">dtype & casting</span><span class="topic">shape & reshape</span>
+              <span class="topic">squeeze & expand_dims</span>
+              <span class="topic">vstack / hstack / concatenate</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Operations — ML-critical</div>
+            <div class="topic-grid">
+              <span class="topic">broadcasting rules</span><span class="topic">vectorization vs loops</span>
+              <span class="topic">@ operator / matmul</span><span class="topic">einsum notation</span>
+              <span class="topic">np.linalg (norm, inv, eig, svd)</span>
+              <span class="topic">views vs copies</span>
+            </div>
+          </div>
+          <div class="resources">
+            <span class="res-label">Resources</span>
+            <a class="res-link res-free" href="https://cs231n.github.io/python-numpy-tutorial/" target="_blank">CS231n NumPy Tutorial</a>
+            <a class="res-link res-practice" href="https://github.com/rougier/numpy-100" target="_blank">100 NumPy Exercises</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="module" id="m5">
+        <div class="module-header" onclick="toggleMod('m5')">
+          <span class="mod-num">2.2</span><span class="mod-name">Pandas — Data Manipulation</span>
+          <div class="difficulty"><div class="diff-dot active"></div><div class="diff-dot active"></div><div class="diff-dot"></div></div>
+          <span class="chevron-icon">▾</span>
+        </div>
+        <div class="module-body">
+          <div class="topic-group">
+            <div class="topic-group-label">Core</div>
+            <div class="topic-grid">
+              <span class="topic">Series & DataFrame</span><span class="topic">iloc / loc indexing</span>
+              <span class="topic">boolean filtering</span><span class="topic">isnull / fillna / dropna</span>
+              <span class="topic">groupby + agg</span><span class="topic">merge / join / concat</span>
+              <span class="topic">pivot_table</span><span class="topic">apply / map</span>
+            </div>
+          </div>
+          <div class="resources">
+            <span class="res-label">Resources</span>
+            <a class="res-link res-practice" href="https://www.kaggle.com/learn/pandas" target="_blank">Kaggle Pandas Course</a>
+          </div>
+          <div class="project-box">
+            <div class="project-label">Mini Project</div>
+            <span class="project-desc">Kaggle dataset EDA notebook — ১০+ chart, correlation analysis, distribution analysis। GitHub-এ push।</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════ PHASE 3 ══════════════════════════ -->
+    <section class="phase-section" id="phase3">
+      <div class="phase-header">
+        <span class="phase-num" style="background:rgba(181,70,15,.1);color:var(--accent3);border:1px solid rgba(181,70,15,.25)">03</span>
+        <span class="phase-title">Classical Machine Learning</span>
+        <span class="phase-time">সপ্তাহ ৬–১০</span>
+      </div>
+
+      <div class="module" id="m7">
+        <div class="module-header" onclick="toggleMod('m7')">
+          <span class="mod-num">3.1</span><span class="mod-name">ML Fundamentals & Linear Regression from Scratch</span>
+          <div class="difficulty"><div class="diff-dot active"></div><div class="diff-dot active"></div><div class="diff-dot"></div></div>
+          <span class="chevron-icon">▾</span>
+        </div>
+        <div class="module-body">
+          <div class="topic-group">
+            <div class="topic-group-label">Core Concepts</div>
+            <div class="topic-grid">
+              <span class="topic">supervised / unsupervised / RL</span>
+              <span class="topic">bias-variance tradeoff</span><span class="topic">overfitting & underfitting</span>
+              <span class="topic">regularization (L1 / L2 / ElasticNet)</span>
+              <span class="topic">cross-validation (k-fold)</span>
+              <span class="topic">feature scaling (StandardScaler)</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Gradient Descent — LLM-এর ভিত্তি</div>
+            <div class="topic-grid">
+              <span class="topic">MSE cost function</span>
+              <span class="topic">gradient descent (batch)</span>
+              <span class="topic">stochastic gradient descent (SGD)</span>
+              <span class="topic">mini-batch gradient descent</span>
+              <span class="topic">learning rate selection</span>
+              <span class="topic">Ridge & Lasso</span>
+            </div>
+          </div>
+          <div class="resources">
+            <span class="res-label">Resources</span>
+            <a class="res-link res-free" href="https://www.coursera.org/learn/machine-learning" target="_blank">Andrew Ng ML Specialization</a>
+            <a class="res-link res-book">Book: Hands-On ML (Géron)</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="module" id="m8">
+        <div class="module-header" onclick="toggleMod('m8')">
+          <span class="mod-num">3.2</span><span class="mod-name">Classification & Ensemble Methods</span>
+          <div class="difficulty"><div class="diff-dot active"></div><div class="diff-dot active"></div><div class="diff-dot"></div></div>
+          <span class="chevron-icon">▾</span>
+        </div>
+        <div class="module-body">
+          <div class="topic-group">
+            <div class="topic-group-label">Algorithms</div>
+            <div class="topic-grid">
+              <span class="topic">Logistic Regression</span><span class="topic">Decision Tree</span>
+              <span class="topic">Random Forest</span><span class="topic">SVM (kernel trick)</span>
+              <span class="topic">XGBoost</span><span class="topic">LightGBM</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Evaluation Metrics</div>
+            <div class="topic-grid">
+              <span class="topic">confusion matrix</span><span class="topic">precision / recall / F1</span>
+              <span class="topic">ROC curve & AUC</span><span class="topic">log loss</span>
+            </div>
+          </div>
+          <div class="project-box">
+            <div class="project-label">Portfolio Project 1</div>
+            <span class="project-desc">Disease Prediction System — real medical dataset, XGBoost + SHAP explanation + FastAPI endpoint।</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════ PHASE 4 ══════════════════════════ -->
+    <section class="phase-section" id="phase4">
+      <div class="phase-header">
+        <span class="phase-num" style="background:rgba(192,57,43,.1);color:var(--red);border:1px solid rgba(192,57,43,.25)">04</span>
+        <span class="phase-title">Deep Learning — PyTorch · CNN · RNN</span>
+        <span class="phase-time">সপ্তাহ ১০–১৭</span>
+      </div>
+
+      <div class="module" id="m11">
+        <div class="module-header" onclick="toggleMod('m11')">
+          <span class="mod-num">4.1</span><span class="mod-name">PyTorch Masterclass <span class="badge-core">core</span></span>
+          <div class="difficulty"><div class="diff-dot active"></div><div class="diff-dot active"></div><div class="diff-dot active"></div></div>
+          <span class="chevron-icon">▾</span>
+        </div>
+        <div class="module-body">
+          <div class="topic-group">
+            <div class="topic-group-label">Tensor Operations</div>
+            <div class="topic-grid">
+              <span class="topic">torch.Tensor creation</span><span class="topic">device: CPU / CUDA / MPS</span>
+              <span class="topic">reshape / view / contiguous</span>
+              <span class="topic">matmul / bmm / einsum</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Autograd & Backprop</div>
+            <div class="topic-grid">
+              <span class="topic">requires_grad</span><span class="topic">computational graph</span>
+              <span class="topic">backward() call</span><span class="topic">torch.no_grad()</span>
+              <span class="topic">gradient accumulation</span><span class="topic">gradient clipping</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Training Pipeline</div>
+            <div class="topic-grid">
+              <span class="topic">Dataset & DataLoader</span>
+              <span class="topic">loss functions: CrossEntropy / MSE</span>
+              <span class="topic">optimizers: Adam / AdamW</span>
+              <span class="topic">LR scheduler</span><span class="topic">train / eval mode</span>
+              <span class="topic">mixed precision (torch.autocast)</span>
+              <span class="topic">multi-GPU DDP</span>
+            </div>
+          </div>
+          <div class="resources">
+            <span class="res-label">Resources</span>
+            <a class="res-link res-free" href="https://pytorch.org/tutorials/" target="_blank">PyTorch Official Tutorials</a>
+            <a class="res-link res-free" href="https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ" target="_blank">Karpathy nn-zero-to-hero</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="module" id="m12">
+        <div class="module-header" onclick="toggleMod('m12')">
+          <span class="mod-num">4.2</span><span class="mod-name">CNN & Transfer Learning</span>
+          <div class="difficulty"><div class="diff-dot active"></div><div class="diff-dot active"></div><div class="diff-dot"></div></div>
+          <span class="chevron-icon">▾</span>
+        </div>
+        <div class="module-body">
+          <div class="topic-group">
+            <div class="topic-group-label">Architectures</div>
+            <div class="topic-grid">
+              <span class="topic">convolution operation</span><span class="topic">stride & padding</span>
+              <span class="topic">pooling layers</span><span class="topic">ResNet & skip connections</span>
+              <span class="topic">EfficientNet</span><span class="topic">MobileNet</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Transfer Learning</div>
+            <div class="topic-grid">
+              <span class="topic">pretrained models (torchvision)</span>
+              <span class="topic">feature extraction (freeze layers)</span>
+              <span class="topic">fine-tuning entire network</span>
+              <span class="topic">data augmentation (albumentations)</span>
+            </div>
+          </div>
+          <div class="project-box">
+            <div class="project-label">Portfolio Project 2</div>
+            <span class="project-desc">Medical Image Diagnostics — Brain MRI tumor detection। Transfer learning (ResNet), Grad-CAM visualization, deployed API।</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="module" id="m13">
+        <div class="module-header" onclick="toggleMod('m13')">
+          <span class="mod-num">4.3</span><span class="mod-name">Sequence Models — RNN · LSTM · GRU</span>
+          <div class="difficulty"><div class="diff-dot active"></div><div class="diff-dot active"></div><div class="diff-dot active"></div></div>
+          <span class="chevron-icon">▾</span>
+        </div>
+        <div class="module-body">
+          <div class="topic-group">
+            <div class="topic-group-label">LSTM & GRU</div>
+            <div class="topic-grid">
+              <span class="topic">hidden state & cell state</span>
+              <span class="topic">forget / input / output gate</span>
+              <span class="topic">BPTT (backprop through time)</span>
+              <span class="topic">vanishing gradient problem</span>
+              <span class="topic">bidirectional RNN</span>
+              <span class="topic">seq2seq & encoder-decoder</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════ PHASE 5 ══════════════════════════ -->
+    <section class="phase-section" id="phase5">
+      <div class="phase-header">
+        <span class="phase-num" style="background:rgba(123,45,139,.1);color:var(--accent4);border:1px solid rgba(123,45,139,.25)">05</span>
+        <span class="phase-title">NLP · Transformer from Scratch · LLM Engineering</span>
+        <span class="phase-time">সপ্তাহ ১৭–২৬ — তোমার main focus</span>
+      </div>
+
+      <div class="module" id="m14">
+        <div class="module-header" onclick="toggleMod('m14')">
+          <span class="mod-num">5.1</span><span class="mod-name">Classical NLP & Text Preprocessing</span>
+          <div class="difficulty"><div class="diff-dot active"></div><div class="diff-dot"></div><div class="diff-dot"></div></div>
+          <span class="chevron-icon">▾</span>
+        </div>
+        <div class="module-body">
+          <div class="topic-group">
+            <div class="topic-group-label">Text Preprocessing</div>
+            <div class="topic-grid">
+              <span class="topic">tokenization (word / sentence)</span>
+              <span class="topic">stemming & lemmatization</span>
+              <span class="topic">regex for NLP</span>
+              <span class="topic">Unicode & encoding issues</span>
+              <span class="topic">Bangla text normalization</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Subword Tokenization — LLM-এ crucial</div>
+            <div class="topic-grid">
+              <span class="topic">BPE (Byte Pair Encoding)</span><span class="topic">WordPiece</span>
+              <span class="topic">SentencePiece</span><span class="topic">Unigram tokenization</span>
+              <span class="topic">tokenizer training from scratch</span>
+              <span class="topic">vocab size effects</span>
+              <span class="topic">Bangla tokenizer — challenges</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Text Representation</div>
+            <div class="topic-grid">
+              <span class="topic">TF-IDF — theory & implementation</span>
+              <span class="topic">cosine similarity</span>
+              <span class="topic">n-gram language model</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="module" id="m15">
+        <div class="module-header" onclick="toggleMod('m15')">
+          <span class="mod-num">5.2</span><span class="mod-name">Word Embeddings & Contextual Representations</span>
+          <div class="difficulty"><div class="diff-dot active"></div><div class="diff-dot active"></div><div class="diff-dot"></div></div>
+          <span class="chevron-icon">▾</span>
+        </div>
+        <div class="module-body">
+          <div class="topic-group">
+            <div class="topic-group-label">Static Embeddings</div>
+            <div class="topic-grid">
+              <span class="topic">Word2Vec — CBOW & Skip-gram</span>
+              <span class="topic">negative sampling</span>
+              <span class="topic">GloVe — global co-occurrence</span>
+              <span class="topic">FastText — subword embeddings</span>
+              <span class="topic">embedding space visualization</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Sentence & Document Embeddings — RAG-এ লাগে</div>
+            <div class="topic-grid">
+              <span class="topic">sentence-transformers library</span>
+              <span class="topic">mean pooling</span><span class="topic">CLS token pooling</span>
+              <span class="topic">bi-encoder architecture</span>
+              <span class="topic">cross-encoder architecture</span>
+              <span class="topic">embedding model benchmarks (MTEB)</span>
+              <span class="topic">multilingual embeddings (LaBSE, mE5)</span>
+              <span class="topic">Bangla sentence embeddings</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="module" id="m16">
+        <div class="module-header" onclick="toggleMod('m16')">
+          <span class="mod-num">5.3</span><span class="mod-name">Transformer Architecture — Built from Scratch <span class="badge-core">core</span></span>
+          <div class="difficulty"><div class="diff-dot active"></div><div class="diff-dot active"></div><div class="diff-dot active"></div></div>
+          <span class="chevron-icon">▾</span>
+        </div>
+        <div class="module-body">
+          <div class="topic-group">
+            <div class="topic-group-label">Attention Mechanism</div>
+            <div class="topic-grid">
+              <span class="topic">Query / Key / Value matrices</span>
+              <span class="topic">scaled dot-product attention</span>
+              <span class="topic">softmax temperature</span>
+              <span class="topic">attention weights visualization</span>
+              <span class="topic">multi-head attention</span>
+              <span class="topic">causal / masked attention</span>
+              <span class="topic">cross-attention</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Positional Encoding</div>
+            <div class="topic-grid">
+              <span class="topic">sinusoidal positional encoding</span>
+              <span class="topic">learned positional embeddings</span>
+              <span class="topic">RoPE (Rotary Position Embedding)</span>
+              <span class="topic">ALiBi</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Full Transformer Block</div>
+            <div class="topic-grid">
+              <span class="topic">residual connections (Add & Norm)</span>
+              <span class="topic">Layer Normalization</span>
+              <span class="topic">Feed-Forward Network (FFN)</span>
+              <span class="topic">GELU / SwiGLU activation</span>
+              <span class="topic">pre-norm vs post-norm</span>
+              <span class="topic">RMSNorm</span>
+              <span class="topic">encoder-decoder stack</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Decoding Strategies</div>
+            <div class="topic-grid">
+              <span class="topic">greedy decoding</span><span class="topic">beam search</span>
+              <span class="topic">top-k sampling</span><span class="topic">top-p (nucleus) sampling</span>
+              <span class="topic">temperature scaling</span><span class="topic">repetition penalty</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Modern Variants</div>
+            <div class="topic-grid">
+              <span class="topic">BERT — bidirectional encoder</span>
+              <span class="topic">GPT — autoregressive decoder</span>
+              <span class="topic">Flash Attention — memory efficient</span>
+              <span class="topic">Grouped Query Attention (GQA)</span>
+              <span class="topic">Mixture of Experts (MoE)</span>
+            </div>
+          </div>
+          <div class="resources">
+            <span class="res-label">Resources</span>
+            <a class="res-link res-paper" href="https://arxiv.org/abs/1706.03762" target="_blank">Paper: Attention Is All You Need</a>
+            <a class="res-link res-free" href="https://github.com/karpathy/nanoGPT" target="_blank">Karpathy nanoGPT</a>
+            <a class="res-link res-free" href="http://nlp.seas.harvard.edu/annotated-transformer/" target="_blank">Annotated Transformer</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="module" id="m17">
+        <div class="module-header" onclick="toggleMod('m17')">
+          <span class="mod-num">5.4</span><span class="mod-name">Bangla SLM — Main Project <span class="badge-llm">LLM</span></span>
+          <div class="difficulty"><div class="diff-dot active"></div><div class="diff-dot active"></div><div class="diff-dot active"></div></div>
+          <span class="chevron-icon">▾</span>
+        </div>
+        <div class="module-body">
+          <div class="topic-group">
+            <div class="topic-group-label">Data Collection</div>
+            <div class="topic-grid">
+              <span class="topic">CC-100 Bangla corpus</span><span class="topic">BNLP Toolkit dataset</span>
+              <span class="topic">Oscar Bangla</span><span class="topic">Wikipedia Bangla dump</span>
+              <span class="topic">deduplication</span><span class="topic">quality filtering</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Tokenizer Training</div>
+            <div class="topic-grid">
+              <span class="topic">SentencePiece training on Bangla</span>
+              <span class="topic">vocab size 16k–64k</span>
+              <span class="topic">special tokens [PAD] [BOS] [EOS]</span>
+              <span class="topic">byte-level BPE</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Pre-training</div>
+            <div class="topic-grid">
+              <span class="topic">GPT-style decoder-only architecture</span>
+              <span class="topic">50M–200M parameter model</span>
+              <span class="topic">next-token prediction (CLM)</span>
+              <span class="topic">cosine LR schedule + warmup</span>
+              <span class="topic">gradient accumulation</span>
+              <span class="topic">perplexity tracking</span>
+            </div>
+          </div>
+          <div class="resources">
+            <span class="res-label">Datasets</span>
+            <a class="res-link res-free" href="https://data.statmt.org/cc-100/" target="_blank">CC-100 Bangla</a>
+            <a class="res-link res-free" href="https://github.com/sagorbrur/bnlp" target="_blank">BNLP Toolkit</a>
+          </div>
+          <div class="project-box">
+            <div class="project-label">Portfolio Project 3 — Bangla SLM</div>
+            <span class="project-desc">50M–200M param GPT-style Bangla text generator। Hugging Face-এ publish + demo Space তৈরি। এটাই তোমার সবচেয়ে differentiating project।</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="module" id="m18">
+        <div class="module-header" onclick="toggleMod('m18')">
+          <span class="mod-num">5.5</span><span class="mod-name">LLM Fine-tuning & Alignment <span class="badge-llm">LLM</span></span>
+          <div class="difficulty"><div class="diff-dot active"></div><div class="diff-dot active"></div><div class="diff-dot active"></div></div>
+          <span class="chevron-icon">▾</span>
+        </div>
+        <div class="module-body">
+          <div class="topic-group">
+            <div class="topic-group-label">PEFT — Efficient Fine-tuning</div>
+            <div class="topic-grid">
+              <span class="topic">LoRA — Low-Rank Adaptation</span>
+              <span class="topic">rank r selection</span><span class="topic">alpha scaling</span>
+              <span class="topic">target modules (q_proj, v_proj)</span>
+              <span class="topic">QLoRA — 4-bit quantized LoRA</span>
+              <span class="topic">bitsandbytes library</span>
+              <span class="topic">Adapter layers</span><span class="topic">Prefix tuning</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Instruction Tuning</div>
+            <div class="topic-grid">
+              <span class="topic">instruction dataset format</span>
+              <span class="topic">chat template (ChatML)</span>
+              <span class="topic">SFT (Supervised Fine-tuning)</span>
+              <span class="topic">DPO (Direct Preference Optimization)</span>
+              <span class="topic">RLHF overview</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Open-Source Models</div>
+            <div class="topic-grid">
+              <span class="topic">Gemma-2 / Gemma-3</span><span class="topic">Qwen2.5</span>
+              <span class="topic">Llama-3</span><span class="topic">Mistral</span><span class="topic">Phi-4</span>
+            </div>
+          </div>
+          <div class="resources">
+            <span class="res-label">Resources</span>
+            <a class="res-link res-paper" href="https://arxiv.org/abs/2106.09685" target="_blank">Paper: LoRA</a>
+            <a class="res-link res-paper" href="https://arxiv.org/abs/2305.18290" target="_blank">Paper: DPO</a>
+            <a class="res-link res-free" href="https://github.com/unslothai/unsloth" target="_blank">Unsloth (fast fine-tuning)</a>
+          </div>
+          <div class="project-box">
+            <div class="project-label">Portfolio Project 4</div>
+            <span class="project-desc">Bangla Legal / HR Chatbot — Gemma বা Qwen QLoRA fine-tune, Bangla instruction dataset, DPO alignment, FastAPI deployment।</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="module" id="m18b">
+        <div class="module-header" onclick="toggleMod('m18b')">
+          <span class="mod-num">5.6</span><span class="mod-name">LLM Inference & Quantization <span class="badge-llm">LLM</span></span>
+          <div class="difficulty"><div class="diff-dot active"></div><div class="diff-dot active"></div><div class="diff-dot active"></div></div>
+          <span class="chevron-icon">▾</span>
+        </div>
+        <div class="module-body">
+          <div class="topic-group">
+            <div class="topic-group-label">Quantization</div>
+            <div class="topic-grid">
+              <span class="topic">INT8 quantization</span>
+              <span class="topic">INT4 (GPTQ, AWQ)</span>
+              <span class="topic">GGUF format (llama.cpp)</span>
+              <span class="topic">bitsandbytes 4-bit</span>
+              <span class="topic">post-training quantization</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Inference Optimization</div>
+            <div class="topic-grid">
+              <span class="topic">KV Cache — concept & impl</span>
+              <span class="topic">Paged Attention</span>
+              <span class="topic">Flash Attention 2</span>
+              <span class="topic">speculative decoding</span>
+              <span class="topic">continuous batching</span>
+              <span class="topic">vLLM serving engine</span>
+              <span class="topic">Ollama (local deployment)</span>
+              <span class="topic">llama.cpp</span>
+            </div>
+          </div>
+          <div class="resources">
+            <span class="res-label">Resources</span>
+            <a class="res-link res-free" href="https://huggingface.co/docs/trl/index" target="_blank">HuggingFace TRL Docs</a>
+            <a class="res-link res-free" href="https://vllm.readthedocs.io/" target="_blank">vLLM Docs</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════ PHASE 5B — RAG ══════════════════════════ -->
+    <section class="phase-section" id="phase5b">
+      <div class="phase-header">
+        <span class="phase-num" style="background:rgba(15,107,138,.1);color:var(--accent5);border:1px solid rgba(15,107,138,.25)">5B</span>
+        <span class="phase-title">RAG Engineering — Retrieval-Augmented Generation</span>
+        <span class="phase-time">সপ্তাহ ২২–২৬ (Phase 5-এর সাথে parallel)</span>
+      </div>
+
+      <div class="module" id="mrag1">
+        <div class="module-header" onclick="toggleMod('mrag1')">
+          <span class="mod-num">R.1</span><span class="mod-name">RAG Fundamentals & Architecture <span class="badge-rag">RAG</span></span>
+          <div class="difficulty"><div class="diff-dot active"></div><div class="diff-dot active"></div><div class="diff-dot"></div></div>
+          <span class="chevron-icon">▾</span>
+        </div>
+        <div class="module-body">
+          <div class="topic-group">
+            <div class="topic-group-label">RAG Core Concepts</div>
+            <div class="topic-grid">
+              <span class="topic">naive RAG architecture</span>
+              <span class="topic">retrieval → augmentation → generation</span>
+              <span class="topic">indexing pipeline</span>
+              <span class="topic">query pipeline</span>
+              <span class="topic">RAG vs fine-tuning — কখন কোনটা</span>
+              <span class="topic">hallucination reduction</span>
+              <span class="topic">knowledge cutoff problem solving</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Document Processing</div>
+            <div class="topic-grid">
+              <span class="topic">PDF / DOCX / HTML parsing</span>
+              <span class="topic">fixed-size chunking</span>
+              <span class="topic">recursive character splitter</span>
+              <span class="topic">semantic chunking</span>
+              <span class="topic">overlap strategy</span>
+              <span class="topic">chunk size selection</span>
+              <span class="topic">metadata tagging</span>
+              <span class="topic">Bangla document chunking challenges</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Embedding & Indexing</div>
+            <div class="topic-grid">
+              <span class="topic">embedding model selection</span>
+              <span class="topic">batch embedding</span>
+              <span class="topic">vector normalization</span>
+              <span class="topic">cosine vs dot product similarity</span>
+              <span class="topic">FAISS flat index</span>
+              <span class="topic">FAISS HNSW index</span>
+              <span class="topic">Chroma vector database</span>
+              <span class="topic">Qdrant</span><span class="topic">Pinecone</span>
+              <span class="topic">Weaviate</span>
+              <span class="topic">index persistence & loading</span>
+            </div>
+          </div>
+          <div class="resources">
+            <span class="res-label">Resources</span>
+            <a class="res-link res-free" href="https://python.langchain.com/docs/" target="_blank">LangChain Docs</a>
+            <a class="res-link res-free" href="https://docs.llamaindex.ai/" target="_blank">LlamaIndex Docs</a>
+            <a class="res-link res-paper" href="https://arxiv.org/abs/2005.11401" target="_blank">Paper: RAG (Lewis et al.)</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="module" id="mrag2">
+        <div class="module-header" onclick="toggleMod('mrag2')">
+          <span class="mod-num">R.2</span><span class="mod-name">Advanced Retrieval Techniques <span class="badge-rag">RAG</span></span>
+          <div class="difficulty"><div class="diff-dot active"></div><div class="diff-dot active"></div><div class="diff-dot active"></div></div>
+          <span class="chevron-icon">▾</span>
+        </div>
+        <div class="module-body">
+          <div class="topic-group">
+            <div class="topic-group-label">Hybrid Search</div>
+            <div class="topic-grid">
+              <span class="topic">BM25 sparse retrieval</span>
+              <span class="topic">dense retrieval (embeddings)</span>
+              <span class="topic">hybrid fusion — RRF (Reciprocal Rank Fusion)</span>
+              <span class="topic">sparse + dense combining</span>
+              <span class="topic">keyword extraction from query</span>
+              <span class="topic">Elasticsearch integration</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Query Transformation</div>
+            <div class="topic-grid">
+              <span class="topic">query rewriting</span>
+              <span class="topic">HyDE (Hypothetical Document Embeddings)</span>
+              <span class="topic">multi-query generation</span>
+              <span class="topic">step-back prompting</span>
+              <span class="topic">sub-question decomposition</span>
+              <span class="topic">query expansion</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Reranking</div>
+            <div class="topic-grid">
+              <span class="topic">cross-encoder reranker</span>
+              <span class="topic">Cohere Rerank API</span>
+              <span class="topic">BGE reranker</span>
+              <span class="topic">LLM-based reranking</span>
+              <span class="topic">MMR (Maximum Marginal Relevance)</span>
+              <span class="topic">diversity in retrieval</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Advanced RAG Patterns</div>
+            <div class="topic-grid">
+              <span class="topic">parent-child chunking</span>
+              <span class="topic">sentence window retrieval</span>
+              <span class="topic">document summary index</span>
+              <span class="topic">multi-vector retrieval</span>
+              <span class="topic">RAPTOR (clustering + summarization)</span>
+              <span class="topic">ColBERT late interaction</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="module" id="mrag3">
+        <div class="module-header" onclick="toggleMod('mrag3')">
+          <span class="mod-num">R.3</span><span class="mod-name">Agentic RAG & Tool Use <span class="badge-rag">RAG</span><span class="badge-llm">LLM</span></span>
+          <div class="difficulty"><div class="diff-dot active"></div><div class="diff-dot active"></div><div class="diff-dot active"></div></div>
+          <span class="chevron-icon">▾</span>
+        </div>
+        <div class="module-body">
+          <div class="topic-group">
+            <div class="topic-group-label">Agentic Patterns</div>
+            <div class="topic-grid">
+              <span class="topic">ReAct (Reasoning + Acting)</span>
+              <span class="topic">tool calling / function calling</span>
+              <span class="topic">self-RAG (retrieval when needed)</span>
+              <span class="topic">corrective RAG (CRAG)</span>
+              <span class="topic">adaptive retrieval</span>
+              <span class="topic">iterative retrieval</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Memory & Context Management</div>
+            <div class="topic-grid">
+              <span class="topic">short-term (conversation buffer)</span>
+              <span class="topic">long-term (vector memory)</span>
+              <span class="topic">entity memory</span>
+              <span class="topic">summary memory</span>
+              <span class="topic">context window management</span>
+              <span class="topic">lost-in-the-middle problem</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Multi-Agent Systems</div>
+            <div class="topic-grid">
+              <span class="topic">LangGraph — stateful agents</span>
+              <span class="topic">supervisor agent pattern</span>
+              <span class="topic">router agent</span>
+              <span class="topic">researcher + writer agents</span>
+              <span class="topic">human-in-the-loop</span>
+              <span class="topic">AutoGen framework</span>
+            </div>
+          </div>
+          <div class="resources">
+            <span class="res-label">Resources</span>
+            <a class="res-link res-free" href="https://langchain-ai.github.io/langgraph/" target="_blank">LangGraph Docs</a>
+            <a class="res-link res-paper" href="https://arxiv.org/abs/2312.10997" target="_blank">Paper: Self-RAG</a>
+            <a class="res-link res-paper" href="https://arxiv.org/abs/2401.15884" target="_blank">Paper: Corrective RAG</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="module" id="mrag4">
+        <div class="module-header" onclick="toggleMod('mrag4')">
+          <span class="mod-num">R.4</span><span class="mod-name">RAG Evaluation & Observability <span class="badge-rag">RAG</span></span>
+          <div class="difficulty"><div class="diff-dot active"></div><div class="diff-dot active"></div><div class="diff-dot"></div></div>
+          <span class="chevron-icon">▾</span>
+        </div>
+        <div class="module-body">
+          <div class="topic-group">
+            <div class="topic-group-label">Evaluation Metrics</div>
+            <div class="topic-grid">
+              <span class="topic">faithfulness score</span>
+              <span class="topic">answer relevancy</span>
+              <span class="topic">context precision</span>
+              <span class="topic">context recall</span>
+              <span class="topic">RAGAS framework</span>
+              <span class="topic">TruLens evaluation</span>
+              <span class="topic">LLM-as-judge pattern</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Observability & Tracing</div>
+            <div class="topic-grid">
+              <span class="topic">LangSmith tracing</span>
+              <span class="topic">Langfuse (open-source)</span>
+              <span class="topic">prompt versioning</span>
+              <span class="topic">latency measurement</span>
+              <span class="topic">token counting</span>
+              <span class="topic">cost tracking</span>
+              <span class="topic">A/B testing pipelines</span>
+            </div>
+          </div>
+          <div class="resources">
+            <span class="res-label">Resources</span>
+            <a class="res-link res-free" href="https://docs.ragas.io/" target="_blank">RAGAS Docs</a>
+            <a class="res-link res-free" href="https://langfuse.com/docs" target="_blank">Langfuse Docs</a>
+          </div>
+          <div class="project-box">
+            <div class="project-label">Portfolio Project 5 — Bangla RAG System</div>
+            <span class="project-desc">Bangla PDF/document থেকে Q&A system। Custom Bangla embedding model + FAISS + hybrid search + reranking + Bangla LLM। RAGAS দিয়ে evaluate, production FastAPI।</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="module" id="mrag5">
+        <div class="module-header" onclick="toggleMod('mrag5')">
+          <span class="mod-num">R.5</span><span class="mod-name">Production RAG Architecture <span class="badge-rag">RAG</span></span>
+          <div class="difficulty"><div class="diff-dot active"></div><div class="diff-dot active"></div><div class="diff-dot active"></div></div>
+          <span class="chevron-icon">▾</span>
+        </div>
+        <div class="module-body">
+          <div class="topic-group">
+            <div class="topic-group-label">Scaling & Performance</div>
+            <div class="topic-grid">
+              <span class="topic">async retrieval</span>
+              <span class="topic">parallel document processing</span>
+              <span class="topic">embedding caching</span>
+              <span class="topic">query caching (semantic cache)</span>
+              <span class="topic">batch inference</span>
+              <span class="topic">streaming responses</span>
+              <span class="topic">rate limiting</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Multimodal RAG</div>
+            <div class="topic-grid">
+              <span class="topic">image + text retrieval</span>
+              <span class="topic">table understanding</span>
+              <span class="topic">OCR integration</span>
+              <span class="topic">CLIP embeddings for images</span>
+              <span class="topic">ColPali (visual document retrieval)</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">GraphRAG</div>
+            <div class="topic-grid">
+              <span class="topic">knowledge graph construction</span>
+              <span class="topic">entity extraction & linking</span>
+              <span class="topic">Microsoft GraphRAG</span>
+              <span class="topic">community detection</span>
+              <span class="topic">graph + vector hybrid</span>
+            </div>
+          </div>
+          <div class="project-box">
+            <div class="project-label">Portfolio Project 6 — Agentic RAG App</div>
+            <span class="project-desc">Multi-tool agent — web search + document retrieval + Bangla LLM + LangGraph। Real-time streaming response। Deployed on HuggingFace Spaces।</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════ PHASE 6 ══════════════════════════ -->
+    <section class="phase-section" id="phase6">
+      <div class="phase-header">
+        <span class="phase-num" style="background:rgba(90,82,69,.1);color:var(--text2);border:1px solid var(--border2)">06</span>
+        <span class="phase-title">MLOps · Deployment · Job Hunt</span>
+        <span class="phase-time">সপ্তাহ ২২–২৬ (parallel)</span>
+      </div>
+
+      <div class="module" id="m20">
+        <div class="module-header" onclick="toggleMod('m20')">
+          <span class="mod-num">6.1</span><span class="mod-name">MLOps & Production Deployment</span>
+          <div class="difficulty"><div class="diff-dot active"></div><div class="diff-dot active"></div><div class="diff-dot"></div></div>
+          <span class="chevron-icon">▾</span>
+        </div>
+        <div class="module-body">
+          <div class="topic-group">
+            <div class="topic-group-label">API Development</div>
+            <div class="topic-grid">
+              <span class="topic">FastAPI basics</span><span class="topic">Pydantic models</span>
+              <span class="topic">async endpoints</span><span class="topic">model caching</span>
+              <span class="topic">request batching</span><span class="topic">streaming SSE</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Docker</div>
+            <div class="topic-grid">
+              <span class="topic">Dockerfile writing</span><span class="topic">multi-stage builds</span>
+              <span class="topic">docker-compose</span><span class="topic">environment variables</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Experiment Tracking</div>
+            <div class="topic-grid">
+              <span class="topic">Weights & Biases (wandb)</span>
+              <span class="topic">MLflow — tracking & model registry</span>
+              <span class="topic">HuggingFace Spaces deployment</span>
+              <span class="topic">Gradio / Streamlit demo</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="module" id="m21">
+        <div class="module-header" onclick="toggleMod('m21')">
+          <span class="mod-num">6.2</span><span class="mod-name">Must-Read Papers</span>
+          <div class="difficulty"><div class="diff-dot active"></div><div class="diff-dot active"></div><div class="diff-dot"></div></div>
+          <span class="chevron-icon">▾</span>
+        </div>
+        <div class="module-body">
+          <div class="topic-group">
+            <div class="topic-group-label">Foundation Papers</div>
+            <div class="topic-grid">
+              <span class="topic">Attention Is All You Need (2017)</span>
+              <span class="topic">BERT (2018)</span><span class="topic">GPT-1/2/3</span>
+              <span class="topic">LLaMA / LLaMA-3</span>
+              <span class="topic">Scaling Laws (Kaplan)</span>
+              <span class="topic">LoRA (2021)</span><span class="topic">QLoRA (2023)</span>
+              <span class="topic">Flash Attention (2022)</span>
+              <span class="topic">RLHF / InstructGPT</span>
+              <span class="topic">DPO (2023)</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">RAG Papers</div>
+            <div class="topic-grid">
+              <span class="topic">RAG (Lewis et al. 2020)</span>
+              <span class="topic">Self-RAG (2023)</span>
+              <span class="topic">CRAG (2024)</span>
+              <span class="topic">GraphRAG (Microsoft 2024)</span>
+              <span class="topic">HyDE (2023)</span>
+              <span class="topic">RAPTOR (2024)</span>
+              <span class="topic">ColBERT (2020)</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Bangla NLP Papers</div>
+            <div class="topic-grid">
+              <span class="topic">BanglaBERT</span>
+              <span class="topic">BNLP papers</span>
+              <span class="topic">Bangla sentiment analysis</span>
+            </div>
+          </div>
+          <div class="resources">
+            <span class="res-label">Tools</span>
+            <a class="res-link res-free" href="https://paperswithcode.com/" target="_blank">Papers With Code</a>
+            <a class="res-link res-free" href="https://huggingface.co/papers" target="_blank">HF Daily Papers</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="module" id="m22">
+        <div class="module-header" onclick="toggleMod('m22')">
+          <span class="mod-num">6.3</span><span class="mod-name">Portfolio & Remote Job Hunt</span>
+          <div class="difficulty"><div class="diff-dot active"></div><div class="diff-dot"></div><div class="diff-dot"></div></div>
+          <span class="chevron-icon">▾</span>
+        </div>
+        <div class="module-body">
+          <div class="topic-group">
+            <div class="topic-group-label">Portfolio Projects Summary</div>
+            <div class="topic-grid">
+              <span class="topic">P1: Disease Prediction (XGBoost+SHAP)</span>
+              <span class="topic">P2: Medical Image (ResNet+Grad-CAM)</span>
+              <span class="topic">P3: Bangla SLM (GPT-style)</span>
+              <span class="topic">P4: Bangla Chatbot (QLoRA+DPO)</span>
+              <span class="topic">P5: Bangla RAG Q&A</span>
+              <span class="topic">P6: Agentic RAG (LangGraph)</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Online Presence</div>
+            <div class="topic-grid">
+              <span class="topic">GitHub profile README</span>
+              <span class="topic">HuggingFace profile</span>
+              <span class="topic">LinkedIn optimization</span>
+              <span class="topic">technical blog (Medium / Substack)</span>
+              <span class="topic">Kaggle ranking</span>
+            </div>
+          </div>
+          <div class="topic-group">
+            <div class="topic-group-label">Remote Platforms</div>
+            <div class="topic-grid">
+              <span class="topic">LinkedIn (ML Engineer filter)</span>
+              <span class="topic">Toptal (AI/ML)</span>
+              <span class="topic">Upwork (ML projects)</span>
+              <span class="topic">Arc.dev</span><span class="topic">Turing</span>
+            </div>
+          </div>
+          <div class="tip-box">
+            <div class="tip-label">সবচেয়ে গুরুত্বপূর্ণ</div>
+            Bangla SLM + RAG দুটো project HuggingFace-এ publish করার পর LinkedIn-এ post করো। "First Bangla SLM + RAG pipeline — built from scratch" — এই combination globally rare। Community visibility = job opportunity।
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+function toggleMod(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+function setActive(el) {
+  document.querySelectorAll('.nav-phase').forEach(n => n.classList.remove('active'));
+  el.classList.add('active');
+}
+
+const searchInput = document.getElementById('search');
+const resultCount = document.getElementById('result-count');
+const noResults = document.getElementById('no-results');
+
+function search(q) {
+  q = q.toLowerCase().trim();
+  const modules = document.querySelectorAll('.module');
+  const sections = document.querySelectorAll('.phase-section');
+  let matchCount = 0, modMatches = 0;
+
+  if (!q) {
+    modules.forEach(m => m.classList.remove('hidden','highlight'));
+    sections.forEach(s => s.classList.remove('hidden'));
+    document.querySelectorAll('.topic').forEach(t => t.classList.remove('match'));
+    noResults.style.display = 'none';
+    resultCount.textContent = '';
+    return;
+  }
+
+  modules.forEach(mod => {
+    const topics = mod.querySelectorAll('.topic');
+    const modName = mod.querySelector('.mod-name').textContent.toLowerCase();
+    let modMatch = modName.includes(q);
+
+    topics.forEach(t => {
+      const txt = t.textContent.toLowerCase();
+      if (txt.includes(q)) { t.classList.add('match'); matchCount++; modMatch = true; }
+      else t.classList.remove('match');
+    });
+
+    if (modMatch) { mod.classList.remove('hidden'); mod.classList.add('open','highlight'); modMatches++; }
+    else { mod.classList.add('hidden'); mod.classList.remove('highlight'); }
+  });
+
+  sections.forEach(sec => {
+    sec.classList.toggle('hidden', sec.querySelectorAll('.module:not(.hidden)').length === 0);
+  });
+
+  noResults.style.display = modMatches === 0 ? 'block' : 'none';
+  resultCount.textContent = modMatches > 0 ? `${matchCount} topic · ${modMatches} module found` : '';
+}
+
+searchInput.addEventListener('input', function(){ search(this.value); });
+
+document.querySelectorAll('.nav-phase').forEach(link => {
+  link.addEventListener('click', function(e) {
+    if (searchInput.value) {
+      e.preventDefault();
+      searchInput.value = ''; search('');
+      const t = document.querySelector(this.getAttribute('href'));
+      if (t) setTimeout(() => t.scrollIntoView({behavior:'smooth'}), 100);
+    }
+  });
+});
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const link = document.querySelector(`a[href="#${entry.target.id}"]`);
+      if (link) { document.querySelectorAll('.nav-phase').forEach(n => n.classList.remove('active')); link.classList.add('active'); }
+    }
+  });
+}, { threshold: 0.15, rootMargin: '-100px 0px -60% 0px' });
+
+document.querySelectorAll('.phase-section').forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
