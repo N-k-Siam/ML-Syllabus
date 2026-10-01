@@ -1,40 +1,8 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf8" />
-    <meta
-      name="viewport"
-      content="width=device-width,initial-scale=1,viewport-fit=cover"
-    />
-    <style>
-      :root {
-        color-scheme: light;
-        box-sizing: border-box;
-        padding-top: env(safe-area-inset-top, 0px);
-        padding-bottom: env(safe-area-inset-bottom, 0px);
-      }
-      html {
-        scroll-padding-top: env(safe-area-inset-top, 0px);
-      }
-      body {
-        margin: 0;
-        padding: 0;
-        font:
-          14px -apple-system,
-          BlinkMacSystemFont,
-          sans-serif;
-        background: #faf9f5;
-        color: #141413;
-      }
-      img {
-        max-width: 100%;
-      }
-      [hidden]:not([hidden="until-found" i]) {
-        display: none !important;
-      }
-    </style>
-  </head>
-  <body>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>AI Engineer Roadmap</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -708,6 +676,151 @@
         margin-top: 28px;
       }
 
+      /* Projects */
+      .side-lbl {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink3);
+        padding: 12px 12px 4px;
+      }
+      .mo-name .count {
+        font-family: var(--mono);
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--ink3);
+        margin-left: 4px;
+      }
+      .pgrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+        gap: 14px;
+      }
+      .pcard {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 16px 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        min-width: 0;
+      }
+      .pcard.flagship {
+        grid-column: 1/-1;
+        border-color: var(--accent);
+      }
+      .ptop {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: flex-start;
+      }
+      .ptags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        margin-bottom: 6px;
+      }
+      .ptag {
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--ink2);
+        border: 1px solid var(--line);
+        border-radius: 99px;
+        padding: 1px 8px;
+      }
+      .ptag.hot {
+        color: var(--on-accent);
+        background: var(--accent);
+        border-color: var(--accent);
+      }
+      .pname {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: 19px;
+        line-height: 1.2;
+        margin: 0;
+        text-wrap: balance;
+      }
+      .pring {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        flex: none;
+      }
+      .ppitch {
+        margin: 0;
+        font-size: 14.5px;
+      }
+      .pwhy {
+        margin: 0;
+        font-size: 13.5px;
+        color: var(--ink2);
+      }
+      .pwhy b {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .pweeks,
+      .builds {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 6px;
+      }
+      .builds {
+        margin-top: 10px;
+      }
+      .wkchip,
+      .projchip {
+        border: 1px solid var(--line);
+        background: var(--surface);
+        border-radius: 7px;
+        padding: 3px 9px;
+        font-size: 12.5px;
+        cursor: pointer;
+      }
+      .wkchip:hover,
+      .projchip:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .projchip {
+        background: var(--accent-soft);
+        border-color: transparent;
+        color: var(--accent);
+        font-weight: 500;
+      }
+      .pbullet {
+        font-size: 13px;
+        color: var(--ink2);
+        background: var(--sunk);
+        border-radius: 9px;
+        padding: 10px 12px;
+        font-style: italic;
+      }
+      .pbullet .lbl {
+        display: block;
+        font-style: normal;
+      }
+      .ptask {
+        font-style: normal;
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--accent);
+        background: var(--accent-soft);
+        border-radius: 5px;
+        padding: 1px 6px;
+        margin-right: 2px;
+        white-space: nowrap;
+      }
+      .task input:checked + span .ptask {
+        opacity: 0.6;
+      }
+
       @media (max-width: 860px) {
         .wrap {
           grid-template-columns: minmax(0, 1fr);
@@ -758,14 +871,15 @@
         }
       }
     </style>
-
+  </head>
+  <body>
     <header class="top">
       <div class="top-in">
         <div class="brand">
           <h1>AI Engineer Roadmap</h1>
           <div class="bn">
-            শেখো · বানাও · ডিপ্লয় করো · চাকরি নাও &nbsp;|&nbsp; Oct 2026 to Jun
-            2027 · 20 to 25 h/week
+            শেখো · বানাও · ডিপ্লয় করো · চাকরি নাও &nbsp;|&nbsp; 6-month plan: 5
+            Oct 2026 to 4 Apr 2027 · 20 to 25 h/week
           </div>
         </div>
         <div class="overall">
@@ -798,16 +912,195 @@
         P2: { name: "LLM engineering", c: "--p2" },
         P3: { name: "Fine-tuning + serving", c: "--p3" },
         P4: { name: "Cloud + MLOps", c: "--p4" },
-        P5: { name: "Interview fundamentals", c: "--p5" },
+        P5: { name: "ML, DL + vision", c: "--p5" },
         P6: { name: "Job search", c: "--p6" },
       };
 
-      /* Each week: id, start, end (ISO), phase, title, goal, groups [[name,[topics]]], tasks [], deliver, res [[label,url]], tip */
+      const PROJECTS = {
+        doc: {
+          name: "DocMind: document Q&A assistant",
+          tags: ["Flagship", "RAG", "Full-stack"],
+          pitch:
+            "Upload English or Bangla PDFs, ask questions and get answers with page citations. Login, hybrid search, reranking, evaluation, agent mode, cloud deploy, CI/CD and monitoring.",
+          why: "Shows the whole AI engineer job in one product: backend, RAG, evaluation and production.",
+          stack: [
+            "FastAPI",
+            "PostgreSQL + pgvector",
+            "JWT",
+            "Docker",
+            "AWS",
+            "GitHub Actions",
+            "Langfuse",
+          ],
+          bullet:
+            "Built and deployed a multilingual RAG assistant (FastAPI, pgvector, hybrid search + reranking); raised retrieval hit rate@5 from X% to Y% on a 100-question eval set.",
+        },
+        support: {
+          name: "Customer Support Agent",
+          tags: ["Agents", "Tool calling"],
+          pitch:
+            "An e-commerce support agent that looks up orders, checks the refund policy, opens tickets and hands off to a human when needed.",
+          why: "Agents are the fastest-growing AI engineering topic, and measured tool-call accuracy makes yours credible.",
+          stack: ["Tool calling", "LangGraph", "PostgreSQL", "Policy RAG"],
+          bullet:
+            "Built a tool-using support agent (order lookup, policy RAG, ticketing) with X% correct tool calls across 40 test conversations.",
+        },
+        extractor: {
+          name: "Smart Document Extractor",
+          tags: ["LLM", "Vision", "Structured output"],
+          pitch:
+            "Turns invoices, receipts and CVs (PDFs or phone photos) into clean, validated JSON.",
+          why: "One of the most requested real-world LLM jobs, and a ready-made freelance portfolio piece.",
+          stack: ["Vision LLM", "PaddleOCR", "Pydantic", "FastAPI"],
+          bullet:
+            "Built an invoice and CV extraction service using vision LLMs with OCR fallback, reaching X% field-level accuracy on 30 hand-labeled documents.",
+        },
+        sql: {
+          name: "Text-to-SQL Analytics Assistant",
+          tags: ["LLM", "Data"],
+          pitch:
+            "Ask business questions in plain English and get the SQL, a result table and a chart, with safe read-only execution.",
+          why: "Every company has data people want to query. Shows SQL depth plus LLM safety thinking.",
+          stack: ["PostgreSQL", "LLM", "Streamlit", "SQL validation"],
+          bullet:
+            "Built a text-to-SQL assistant with read-only execution and self-correction, reaching X% execution accuracy on 50 test questions.",
+        },
+        fraud: {
+          name: "Fraud Detection Service",
+          tags: ["Classical ML", "MLOps"],
+          pitch:
+            "An XGBoost fraud model on heavily imbalanced data, with SHAP explanations, an API and a data-drift check.",
+          why: "Covers classical ML interview topics and proves you can handle messy, imbalanced real-world data.",
+          stack: ["scikit-learn", "XGBoost", "SHAP", "FastAPI", "Docker"],
+          bullet:
+            "Built a fraud detection API on data with 0.17% positives, reaching PR-AUC of X, with SHAP explanations and drift monitoring.",
+        },
+        vision: {
+          name: "Object Detection App",
+          tags: ["Computer vision"],
+          pitch:
+            "A YOLO model fine-tuned for a practical task, such as safety-helmet detection, with an upload-and-detect demo.",
+          why: "Adds computer vision breadth, so you also fit AI roles that involve images.",
+          stack: ["Ultralytics YOLO", "Roboflow", "Gradio", "HF Spaces"],
+          bullet:
+            "Fine-tuned YOLO for safety-equipment detection, reaching mAP50 of X, deployed as a public demo.",
+        },
+        finetune: {
+          name: "Fine-tuned Bangla Model",
+          tags: ["Fine-tuning", "Serving", "Research"],
+          pitch:
+            "A small open model fine-tuned with QLoRA for one Bangla task, served with vLLM and llama.cpp and compared with the base model.",
+          why: "Proves you can adapt and serve open models, not only call APIs. Can also become your second paper.",
+          stack: ["PEFT / QLoRA", "TRL", "W&B", "vLLM", "llama.cpp"],
+          bullet:
+            "Fine-tuned an open model with QLoRA for Bangla summarization, improving ROUGE-L from X to Y; served at Z tokens/s with vLLM.",
+        },
+        bwlm: {
+          name: "BanglaWriteLM release",
+          tags: ["Pre-training", "Research"],
+          pitch:
+            "Your thesis model on Hugging Face with a model card and a live next-word suggestion demo.",
+          why: "Few candidates have trained a language model from scratch. A live demo makes that visible.",
+          stack: ["PyTorch", "SentencePiece", "HF Hub", "Gradio"],
+          bullet:
+            "Pre-trained a lightweight Bangla decoder-only LM (RoPE, SwiGLU, grapheme-aware embeddings) on a cleaned 30+ GB corpus; released with a live demo.",
+        },
+        oss: {
+          name: "Open-source contribution",
+          tags: ["Open source"],
+          pitch:
+            "At least one merged pull request to a library you actually used, such as Hugging Face, FastAPI or LangChain.",
+          why: "A merged PR in a well-known repository is a strong signal that anyone can check.",
+          stack: ["GitHub", "Code review"],
+          bullet: "Contributed a merged fix to <library> (link to PR).",
+        },
+      };
+      const PROJECT_ORDER = [
+        "doc",
+        "support",
+        "extractor",
+        "sql",
+        "fraud",
+        "vision",
+        "finetune",
+        "bwlm",
+        "oss",
+      ];
+
+      /* Weeks start Monday 5 Oct 2026; dates are computed from position. Tasks: "text" or ["text","projectId"]. */
       const WEEKS = [
         {
+          id: "w0",
+          phase: "P0",
+          title: "Python basics",
+          goal: "Make sure the fundamentals are solid before building anything. If you already know a topic, test yourself with the exercises and move on.",
+          groups: [
+            [
+              "Core",
+              [
+                "variables & types",
+                "strings & f-strings",
+                "lists / tuples / sets / dicts",
+                "if / for / while",
+                "functions & default args",
+                "scope",
+                "comprehensions",
+              ],
+            ],
+            [
+              "Files & errors",
+              [
+                "reading & writing files",
+                "with statement",
+                "try / except / finally",
+                "raising exceptions",
+                "csv & json modules",
+              ],
+            ],
+            [
+              "OOP basics",
+              [
+                "classes & objects",
+                "__init__ & self",
+                "methods",
+                "inheritance",
+                "__str__ / __repr__",
+              ],
+            ],
+            [
+              "Modules",
+              [
+                "import",
+                "os, sys, datetime",
+                "collections",
+                "itertools",
+                "pip & virtual environments",
+              ],
+            ],
+          ],
+          tasks: [
+            "Go through the official Python tutorial chapters 3 to 9 (skip what you already know)",
+            "Solve 20 exercises on Exercism or HackerRank (strings, lists, dicts, functions)",
+            "Build a small command-line expense or to-do tracker that saves its data to a JSON file",
+            "Practice OOP: model a library (Book, Member, Loan) with classes and inheritance",
+            "Count word frequencies in a Bangla or English text file using collections.Counter and defaultdict",
+            "Handle errors properly: a missing file, bad user input, and one custom exception class",
+            "DSA: solve 3 Easy problems",
+          ],
+          deliver: "The tracker app and an exercises repo on GitHub.",
+          res: [
+            ["Official Python tutorial", "https://docs.python.org/3/tutorial/"],
+            ["Exercism Python", "https://exercism.org/tracks/python"],
+            ["HackerRank Python", "https://www.hackerrank.com/domains/python"],
+            [
+              "Automate the Boring Stuff",
+              "https://automatetheboringstuff.com/",
+            ],
+          ],
+          tip: "You already use Python for your thesis, so most of this is review. Spend the extra time on whatever feels shaky, usually OOP and exceptions.",
+        },
+        {
           id: "w1",
-          start: "2026-10-05",
-          end: "2026-10-11",
           phase: "P0",
           title: "Python for production",
           goal: "Write Python like a software engineer: typed, structured, packaged and logged.",
@@ -853,7 +1146,7 @@
             "DSA: solve 4 Easy problems on arrays and hashing",
           ],
           deliver:
-            "A typed, installable Python package on GitHub (for example bangla-clean) with a clear README.",
+            "A typed, installable Python package on GitHub with a clear README.",
           res: [
             [
               "Python typing docs",
@@ -867,8 +1160,6 @@
         },
         {
           id: "w2",
-          start: "2026-10-12",
-          end: "2026-10-18",
           phase: "P0",
           title: "Git, Linux and DSA patterns",
           goal: "Use Git and the terminal confidently, and start the DSA habit that runs until you are hired.",
@@ -920,11 +1211,9 @@
         },
         {
           id: "w3",
-          start: "2026-10-19",
-          end: "2026-10-25",
           phase: "P1",
           title: "SQL and PostgreSQL",
-          goal: "Write real SQL and design the database for the flagship app, a Bangla document assistant.",
+          goal: "Write real SQL and design the database for DocMind, your flagship app.",
           groups: [
             [
               "Queries",
@@ -954,12 +1243,15 @@
             "Install PostgreSQL (or run it in Docker) and learn the psql basics",
             "Complete SQLBolt lessons 1 to 18",
             "Solve 15 problems from LeetCode SQL 50",
-            "Design the flagship schema: users, documents, chunks, chats, messages, and draw the ER diagram",
+            [
+              "Design the DocMind schema: users, documents, chunks, chats, messages, and draw the ER diagram",
+              "doc",
+            ],
             "Load a 100k-row table and use EXPLAIN ANALYZE to see what an index changes",
             "DSA: 4 problems on stacks and binary search",
           ],
           deliver:
-            "schema.sql and an ER diagram for the Bangla document assistant in a new repository.",
+            "schema.sql and an ER diagram for DocMind in a new repository.",
           res: [
             ["SQLBolt", "https://sqlbolt.com/"],
             ["LeetCode SQL 50", "https://leetcode.com/studyplan/top-sql-50/"],
@@ -969,12 +1261,10 @@
             ],
             ["Use The Index, Luke", "https://use-the-index-luke.com/"],
           ],
-          tip: "JOINs and window functions are the most common SQL interview questions.",
+          tip: "JOINs and window functions are the most common SQL interview questions, and you will need them again for the Text-to-SQL project.",
         },
         {
           id: "w4",
-          start: "2026-10-26",
-          end: "2026-11-01",
           phase: "P1",
           title: "FastAPI core",
           goal: "Build a well-structured FastAPI service with validation and auto-generated docs.",
@@ -1008,10 +1298,22 @@
           ],
           tasks: [
             "Do the FastAPI tutorial from First Steps through Dependencies",
-            "Create the flagship repo layout: app/api, app/core, app/models, app/schemas, app/services",
-            "Build CRUD endpoints for documents (in memory for now) with Pydantic schemas",
-            "Load configuration with pydantic-settings and a .env file that is never committed",
-            "Add a global exception handler so every error returns the same JSON shape",
+            [
+              "Create the DocMind repo layout: app/api, app/core, app/models, app/schemas, app/services",
+              "doc",
+            ],
+            [
+              "Build CRUD endpoints for documents (in memory for now) with Pydantic schemas",
+              "doc",
+            ],
+            [
+              "Load configuration with pydantic-settings and a .env file that is never committed",
+              "doc",
+            ],
+            [
+              "Add a global exception handler so every error returns the same JSON shape",
+              "doc",
+            ],
             "DSA: 4 problems on linked lists",
           ],
           deliver: "A FastAPI app with CRUD routes and a working /docs page.",
@@ -1027,8 +1329,6 @@
         },
         {
           id: "w5",
-          start: "2026-11-02",
-          end: "2026-11-08",
           phase: "P1",
           title: "Database layer",
           goal: "Connect the API to PostgreSQL properly, with migrations and a clean separation of layers.",
@@ -1059,10 +1359,16 @@
           ],
           tasks: [
             "Do the SQLAlchemy 2.0 unified tutorial (ORM part)",
-            "Implement the users, documents and chunks models with relationships",
-            "Set up Alembic and create the first two migrations",
-            "Replace the in-memory CRUD with PostgreSQL through a repository layer",
-            "Add limit/offset pagination to every list endpoint",
+            [
+              "Implement the users, documents and chunks models with relationships",
+              "doc",
+            ],
+            ["Set up Alembic and create the first two migrations", "doc"],
+            [
+              "Replace the in-memory CRUD with PostgreSQL through a repository layer",
+              "doc",
+            ],
+            ["Add limit/offset pagination to every list endpoint", "doc"],
             "DSA: 4 problems on trees (BFS and DFS)",
           ],
           deliver:
@@ -1081,8 +1387,6 @@
         },
         {
           id: "w6",
-          start: "2026-11-09",
-          end: "2026-11-15",
           phase: "P1",
           title: "Auth, file upload and background work",
           goal: "Let real users sign up, log in and upload documents safely.",
@@ -1111,11 +1415,23 @@
             ],
           ],
           tasks: [
-            "Follow the FastAPI Security tutorial and implement sign-up and login with JWT",
-            "Protect document routes so each user sees only their own documents",
-            "Add PDF upload with size and type validation",
-            "Extract text from uploaded PDFs in a background task and store it (PyMuPDF)",
-            "Test with 10 Bangla PDFs and note which ones extract as broken text",
+            [
+              "Follow the FastAPI Security tutorial and implement sign-up and login with JWT",
+              "doc",
+            ],
+            [
+              "Protect document routes so each user sees only their own documents",
+              "doc",
+            ],
+            ["Add PDF upload with size and type validation", "doc"],
+            [
+              "Extract text from uploaded PDFs in a background task and store it (PyMuPDF)",
+              "doc",
+            ],
+            [
+              "Test with English PDFs and 10 Bangla PDFs; note which ones extract as broken text",
+              "doc",
+            ],
             "DSA: 4 problems on heaps",
           ],
           deliver:
@@ -1135,8 +1451,6 @@
         },
         {
           id: "w7",
-          start: "2026-11-16",
-          end: "2026-11-22",
           phase: "P1",
           title: "Testing and code quality",
           goal: "Prove the backend works with automated tests and consistent code quality.",
@@ -1171,11 +1485,23 @@
             ],
           ],
           tasks: [
-            "Write unit tests for services and API tests for auth and documents",
-            "Set up a test database with fixtures that reset it for every test",
-            "Reach 70% or more coverage on the app folder with pytest-cov",
-            "Add Ruff, mypy and pre-commit and fix every warning",
-            "Add structured logging with request id, user id and latency",
+            [
+              "Write unit tests for services and API tests for auth and documents",
+              "doc",
+            ],
+            [
+              "Set up a test database with fixtures that reset it for every test",
+              "doc",
+            ],
+            [
+              "Reach 70% or more coverage on the app folder with pytest-cov",
+              "doc",
+            ],
+            ["Add Ruff, mypy and pre-commit and fix every warning", "doc"],
+            [
+              "Add structured logging with request id, user id and latency",
+              "doc",
+            ],
             "DSA: 4 problems on graphs",
           ],
           deliver:
@@ -1192,8 +1518,6 @@
         },
         {
           id: "w8",
-          start: "2026-11-23",
-          end: "2026-11-29",
           phase: "P1",
           title: "Docker and Compose",
           goal: "Package the whole backend so it runs the same way on any machine.",
@@ -1221,10 +1545,19 @@
           ],
           tasks: [
             "Work through the Docker Get Started guide",
-            "Write a multi-stage Dockerfile for the API and keep the image small",
-            "Write docker-compose.yml with api, PostgreSQL (pgvector image) and Redis",
-            "Add healthchecks and run migrations automatically on startup",
-            "Run the full test suite inside the container",
+            [
+              "Write a multi-stage Dockerfile for the DocMind API and keep the image small",
+              "doc",
+            ],
+            [
+              "Write docker-compose.yml with api, PostgreSQL (pgvector image) and Redis",
+              "doc",
+            ],
+            [
+              "Add healthchecks and run migrations automatically on startup",
+              "doc",
+            ],
+            ["Run the full test suite inside the container", "doc"],
             "DSA: 4 mixed review problems",
           ],
           deliver:
@@ -1234,18 +1567,16 @@
             ["Compose docs", "https://docs.docker.com/compose/"],
             ["pgvector image", "https://hub.docker.com/r/pgvector/pgvector"],
           ],
-          tip: "Use the pgvector PostgreSQL image now, so Phase 2 needs no infrastructure change.",
+          tip: "From now on, every project you build gets a Dockerfile from day one.",
         },
         {
           id: "w9",
-          start: "2026-11-30",
-          end: "2026-12-06",
           phase: "P2",
-          title: "LLM APIs and prompting",
-          goal: "Call LLMs reliably from your backend: streaming, structured output and tool calls.",
+          title: "LLM APIs + Smart Document Extractor",
+          goal: "Call LLMs reliably from code and ship your first standalone AI project: structured extraction from real documents.",
           groups: [
             [
-              "Basics",
+              "LLM basics",
               [
                 "tokens",
                 "context window",
@@ -1258,43 +1589,58 @@
               "Structured output",
               ["JSON schema", "Pydantic validation", "retry on bad output"],
             ],
-            ["Tools", ["function / tool calling", "tool schemas"]],
+            [
+              "Vision & OCR",
+              ["vision LLMs", "PaddleOCR / Tesseract", "PDF to image"],
+            ],
             [
               "Local models",
               ["Ollama", "Qwen / Gemma small models", "cost & latency"],
             ],
           ],
           tasks: [
-            "Do Hugging Face LLM Course chapters 1 and 2 (skim what you already know)",
-            "Call a hosted LLM API and a local Ollama model through one Python interface",
-            "Build a /chat endpoint that streams tokens with Server-Sent Events",
-            "Return structured JSON validated by Pydantic, with a retry when it fails",
-            "Implement one tool call, for example searching the user's documents by title",
-            "Log tokens, latency and cost for every call",
-            "DSA: 4 Medium problems",
+            "Skim Hugging Face LLM Course chapters 1 and 2",
+            "Call a hosted LLM API and a local Ollama model through one Python interface (you will reuse it in every project)",
+            [
+              "Build an extractor that turns invoices, receipts and CVs into JSON validated by Pydantic schemas",
+              "extractor",
+            ],
+            [
+              "Handle scanned images and phone photos with a vision LLM, with OCR as a fallback",
+              "extractor",
+            ],
+            [
+              "Label 30 sample documents by hand and measure field-level accuracy",
+              "extractor",
+            ],
+            [
+              "Wrap it in FastAPI with a simple upload page; push to GitHub with the accuracy table",
+              "extractor",
+            ],
+            [
+              "Add a streaming /chat endpoint (Server-Sent Events) to DocMind",
+              "doc",
+            ],
+            "DSA: 3 Medium problems",
           ],
           deliver:
-            "A streaming chat endpoint with structured output and one working tool.",
+            "Smart Document Extractor on GitHub with a field-accuracy table, and streaming chat in DocMind.",
           res: [
             [
               "Hugging Face LLM Course",
               "https://huggingface.co/learn/llm-course",
             ],
             ["Ollama", "https://ollama.com/"],
-            [
-              "Tool use guide (Claude docs)",
-              "https://docs.claude.com/en/docs/agents-and-tools/tool-use/overview",
-            ],
+            ["PaddleOCR", "https://github.com/PaddlePaddle/PaddleOCR"],
+            ["Pydantic docs", "https://docs.pydantic.dev/"],
           ],
-          tip: "Hide the model provider behind one interface so you can switch to your own model in Phase 3.",
+          tip: "Document extraction is one of the most common paid AI jobs on Upwork. This project doubles as a freelance portfolio piece.",
         },
         {
           id: "w10",
-          start: "2026-12-07",
-          end: "2026-12-13",
           phase: "P2",
           title: "RAG part 1: ingestion and retrieval",
-          goal: "Build the first working question-answering pipeline over uploaded documents.",
+          goal: "Build the first working question-answering pipeline in DocMind.",
           groups: [
             [
               "Ingestion",
@@ -1322,10 +1668,16 @@
           ],
           tasks: [
             "Read the RAG paper abstract and the sentence-transformers quickstart",
-            "Pick 2 or 3 multilingual embedding models from MTEB that handle Bangla",
-            "Chunk extracted text and store chunks plus embeddings in pgvector",
-            "Build /ask: embed the question, retrieve top-k chunks, send them to the LLM",
-            "Add an HNSW index and filter results by user id",
+            "Pick 2 or 3 multilingual embedding models from MTEB that handle both English and Bangla",
+            [
+              "Chunk extracted text and store chunks plus embeddings in pgvector",
+              "doc",
+            ],
+            [
+              "Build /ask: embed the question, retrieve top-k chunks, send them to the LLM",
+              "doc",
+            ],
+            ["Add an HNSW index and filter results by user id", "doc"],
             "DSA: 4 Medium problems",
           ],
           deliver:
@@ -1343,11 +1695,9 @@
         },
         {
           id: "w11",
-          start: "2026-12-14",
-          end: "2026-12-20",
           phase: "P2",
           title: "RAG part 2: better retrieval",
-          goal: "Make answers more accurate and trustworthy, with sources the user can check.",
+          goal: "Make DocMind's answers more accurate and trustworthy, with sources the user can check.",
           groups: [
             [
               "Hybrid search",
@@ -1372,11 +1722,20 @@
             ],
           ],
           tasks: [
-            "Add PostgreSQL full-text search and combine it with vector search using RRF",
-            "Add a cross-encoder reranker and compare results on 10 questions",
-            "Return citations (document and page) with every answer",
-            "Make the model say it does not know when the context has no answer",
-            "Add chat history so follow-up questions work",
+            [
+              "Add PostgreSQL full-text search and combine it with vector search using RRF",
+              "doc",
+            ],
+            [
+              "Add a cross-encoder reranker and compare results on 10 questions",
+              "doc",
+            ],
+            ["Return citations (document and page) with every answer", "doc"],
+            [
+              "Make the model say it does not know when the context has no answer",
+              "doc",
+            ],
+            ["Add chat history so follow-up questions work", "doc"],
             "DSA: 4 Medium problems",
           ],
           deliver:
@@ -1388,22 +1747,20 @@
               "https://www.postgresql.org/docs/current/textsearch.html",
             ],
           ],
-          tip: "PostgreSQL has no Bangla stemmer. Use the simple config, or pre-tokenize with your own tokenizer.",
+          tip: "PostgreSQL has no Bangla stemmer. Use the simple config for Bangla, or pre-tokenize with your own tokenizer.",
         },
         {
           id: "w12",
-          start: "2026-12-21",
-          end: "2026-12-27",
           phase: "P2",
           title: "Evaluation",
-          goal: "Measure your RAG system with numbers, so every design choice has evidence behind it.",
+          goal: "Measure DocMind with numbers, so every design choice has evidence behind it.",
           groups: [
             [
               "Test set",
               [
                 "question / answer / source",
                 "easy, hard, unanswerable",
-                "Bangla + English",
+                "English + Bangla",
               ],
             ],
             ["Retrieval metrics", ["hit rate@k", "MRR", "recall@k"]],
@@ -1419,11 +1776,23 @@
             ["Tracing", ["Langfuse", "prompt versions"]],
           ],
           tasks: [
-            "Write 50 to 100 test questions (Bangla and English) with correct answers and source pages",
-            "Write an eval script that reports hit rate@5 and MRR",
-            "Add LLM-as-judge scoring for faithfulness and check 20 of its judgments by hand",
-            "Compare 2 chunk sizes and 2 embedding models and record the results in a table",
-            "Add Langfuse (or similar) tracing to see every step of a request",
+            [
+              "Write 100 test questions (English and Bangla) with correct answers and source pages",
+              "doc",
+            ],
+            ["Write an eval script that reports hit rate@5 and MRR", "doc"],
+            [
+              "Add LLM-as-judge scoring for faithfulness and check 20 of its judgments by hand",
+              "doc",
+            ],
+            [
+              "Compare 2 chunk sizes and 2 embedding models and record the results in a table",
+              "doc",
+            ],
+            [
+              "Add Langfuse (or similar) tracing to see every step of a request",
+              "doc",
+            ],
             "DSA: 3 Medium problems",
           ],
           deliver:
@@ -1436,22 +1805,20 @@
               "https://hamel.dev/blog/posts/evals/",
             ],
           ],
-          tip: "This eval table is your strongest interview story. Numbers beat adjectives.",
+          tip: "This eval table is your strongest interview story. Numbers beat adjectives. Reuse the same habit in every other project.",
         },
         {
           id: "w13",
-          start: "2026-12-28",
-          end: "2027-01-03",
           phase: "P2",
-          title: "Agents",
-          goal: "Add a careful agent mode and understand when an agent is the wrong tool.",
+          title: "Agents + Customer Support Agent",
+          goal: "Build a separate, realistic agent project and learn when an agent is the wrong tool.",
           groups: [
             [
               "Concepts",
               [
                 "agent loop",
                 "ReAct",
-                "tools",
+                "tool calling",
                 "planning",
                 "stop conditions",
                 "guardrails",
@@ -1459,11 +1826,7 @@
             ],
             [
               "Practice",
-              [
-                "hand-written agent",
-                "LangGraph state graph",
-                "human-in-the-loop",
-              ],
+              ["hand-written agent", "LangGraph state graph", "human handoff"],
             ],
             [
               "Risks",
@@ -1472,18 +1835,38 @@
           ],
           tasks: [
             "Read Building Effective Agents (Anthropic)",
-            "Write an agent loop by hand with 3 tools: search documents, summarize a document, compare two documents",
-            "Rebuild the same agent in LangGraph and compare the two",
-            "Add a step limit, timeouts and a cost limit",
-            "Try 3 prompt-injection attacks hidden inside uploaded PDFs and add a defense",
-            "Write a LinkedIn post or blog post about what you built in Phase 2",
+            [
+              "Create a mock e-commerce backend in PostgreSQL: customers, orders, products, plus refund-policy documents",
+              "support",
+            ],
+            [
+              "Write the agent loop by hand with tools: look up order, check refund eligibility (policy RAG), create ticket, hand off to a human",
+              "support",
+            ],
+            [
+              "Rebuild the same agent in LangGraph and compare the two",
+              "support",
+            ],
+            [
+              "Write 40 test conversations and measure correct tool calls and resolution rate",
+              "support",
+            ],
+            [
+              "Add a step limit, a cost limit, and test 3 prompt-injection attempts",
+              "support",
+            ],
+            "Write a LinkedIn post about DocMind and the support agent",
           ],
           deliver:
-            "Agent mode in the flagship app and a public write-up. Phase 2 complete.",
+            "Customer Support Agent on GitHub with eval numbers and a 2-minute demo video.",
           res: [
             [
               "Building effective agents",
               "https://www.anthropic.com/engineering/building-effective-agents",
+            ],
+            [
+              "Tool use guide (Claude docs)",
+              "https://docs.claude.com/en/docs/agents-and-tools/tool-use/overview",
             ],
             ["LangGraph docs", "https://langchain-ai.github.io/langgraph/"],
             [
@@ -1495,8 +1878,78 @@
         },
         {
           id: "w14",
-          start: "2027-01-04",
-          end: "2027-01-10",
+          phase: "P2",
+          title: "Text-to-SQL Analytics Assistant",
+          goal: "Let non-technical users ask questions about business data in plain English, safely.",
+          groups: [
+            [
+              "Text-to-SQL",
+              [
+                "schema in the prompt",
+                "few-shot examples",
+                "SQL validation",
+                "self-correction on errors",
+              ],
+            ],
+            [
+              "Safety",
+              [
+                "read-only database user",
+                "row limits & timeouts",
+                "blocking writes",
+                "SQL injection risks",
+              ],
+            ],
+            [
+              "Output",
+              [
+                "result tables",
+                "automatic charts",
+                "plain-language explanation",
+              ],
+            ],
+          ],
+          tasks: [
+            [
+              "Load a sample business database (Northwind or a Kaggle e-commerce dataset) into PostgreSQL",
+              "sql",
+            ],
+            [
+              "Build question to SQL to result, with the schema and few-shot examples in the prompt",
+              "sql",
+            ],
+            [
+              "Run every query through a read-only user with timeouts and row limits",
+              "sql",
+            ],
+            [
+              "When a query fails, send the error back to the model and retry (self-correction)",
+              "sql",
+            ],
+            [
+              "Show results as a table plus an automatic chart in Streamlit",
+              "sql",
+            ],
+            [
+              "Write 50 test questions with correct SQL and report execution accuracy",
+              "sql",
+            ],
+            "DSA: 3 Medium problems",
+          ],
+          deliver:
+            "Text-to-SQL assistant with an accuracy report and a live demo. Phase 2 complete.",
+          res: [
+            [
+              "Northwind for PostgreSQL",
+              "https://github.com/pthom/northwind_psql",
+            ],
+            ["Spider benchmark", "https://yale-lily.github.io/spider"],
+            ["Streamlit docs", "https://docs.streamlit.io/"],
+          ],
+          tip: "Interviewers like this project because every company has data that people want to query without writing SQL.",
+        },
+        {
+          id: "w15",
           phase: "P3",
           title: "Fine-tuning foundations",
           goal: "Prepare a clean dataset and a baseline for fine-tuning a small open model on one Bangla task.",
@@ -1524,9 +1977,18 @@
           ],
           tasks: [
             "Read the LoRA and QLoRA papers (abstract, method, results)",
-            "Choose one Bangla task (summarization or QA) and a base model (Qwen or Gemma, 0.5B to 3B)",
-            "Build an instruction dataset of 2k to 10k examples, then clean and split it",
-            "Measure the base model on the validation set before training (your baseline)",
+            [
+              "Choose one Bangla task (summarization or QA) and a base model (Qwen or Gemma, 0.5B to 3B)",
+              "finetune",
+            ],
+            [
+              "Build an instruction dataset of 2k to 10k examples, then clean and split it",
+              "finetune",
+            ],
+            [
+              "Measure the base model on the validation set before training (your baseline)",
+              "finetune",
+            ],
             "Ask your supervisor whether this could become a paper",
           ],
           deliver: "A dataset card and baseline numbers.",
@@ -1539,9 +2001,7 @@
           tip: "Your thesis data-pipeline skills transfer directly to building a clean dataset.",
         },
         {
-          id: "w15",
-          start: "2027-01-11",
-          end: "2027-01-17",
+          id: "w16",
           phase: "P3",
           title: "QLoRA training and evaluation",
           goal: "Train, track and evaluate a fine-tuned model against the baseline.",
@@ -1563,14 +2023,26 @@
             ],
           ],
           tasks: [
-            "Train a QLoRA adapter on the supervisor's RTX 3090 (or Colab / Kaggle)",
-            "Track every run in Weights & Biases and try 2 or 3 settings (rank, learning rate)",
-            "Evaluate against the baseline and write the comparison table",
-            "Merge the adapter and push the model to the Hugging Face Hub with a model card",
+            [
+              "Train a QLoRA adapter on the supervisor's RTX 3090 (or Colab / Kaggle)",
+              "finetune",
+            ],
+            [
+              "Track every run in Weights & Biases and try 2 or 3 settings (rank, learning rate)",
+              "finetune",
+            ],
+            [
+              "Evaluate against the baseline and write the comparison table",
+              "finetune",
+            ],
+            [
+              "Merge the adapter and push the model to the Hugging Face Hub with a model card",
+              "finetune",
+            ],
             "DSA: 4 Medium problems",
           ],
           deliver:
-            "A fine-tuned Bangla model on the Hugging Face Hub with evaluation results.",
+            "A fine-tuned model on the Hugging Face Hub with evaluation results.",
           res: [
             ["TRL docs", "https://huggingface.co/docs/trl"],
             ["Unsloth", "https://github.com/unslothai/unsloth"],
@@ -1579,11 +2051,9 @@
           tip: "Save every run's config. A paper and an interview both ask what you tried and what happened.",
         },
         {
-          id: "w16",
-          start: "2027-01-18",
-          end: "2027-01-24",
+          id: "w17",
           phase: "P3",
-          title: "Model serving and the BanglaWriteLM release",
+          title: "Model serving + BanglaWriteLM release",
           goal: "Serve your own models efficiently and give your thesis model a public demo.",
           groups: [
             ["Quantization", ["4-bit / 8-bit", "GPTQ / AWQ", "GGUF"]],
@@ -1594,14 +2064,23 @@
             ["Release", ["model cards", "Gradio", "Hugging Face Spaces"]],
           ],
           tasks: [
-            "Serve the fine-tuned model with vLLM on GPU and as GGUF with llama.cpp on CPU, and compare speed",
-            "Connect the flagship app to it through your LLM interface and rerun the eval",
-            "Upload BanglaWriteLM to the Hub with a model card (data, tokenizer, size, limits)",
-            "Build a Gradio next-word demo on Hugging Face Spaces",
+            [
+              "Serve the fine-tuned model with vLLM on GPU and as GGUF with llama.cpp on CPU, and compare speed",
+              "finetune",
+            ],
+            [
+              "Connect DocMind to your own model through the shared LLM interface and rerun its eval",
+              "finetune",
+            ],
+            [
+              "Upload BanglaWriteLM to the Hub with a model card (data, tokenizer, size, limits)",
+              "bwlm",
+            ],
+            ["Build a Gradio next-word demo on Hugging Face Spaces", "bwlm"],
             "DSA: 3 Medium problems",
           ],
           deliver:
-            "A live BanglaWriteLM demo, and the flagship app working with your own model. Phase 3 complete.",
+            "A live BanglaWriteLM demo and your fine-tuned model served behind an API. Phase 3 complete.",
           res: [
             ["vLLM docs", "https://docs.vllm.ai/"],
             ["llama.cpp", "https://github.com/ggml-org/llama.cpp"],
@@ -1611,12 +2090,10 @@
           tip: "Ask your supervisor before releasing the thesis model weights publicly.",
         },
         {
-          id: "w17",
-          start: "2027-01-25",
-          end: "2027-01-31",
+          id: "w18",
           phase: "P4",
-          title: "AWS basics and the first deploy",
-          goal: "Put the flagship app on a public HTTPS address without surprise bills.",
+          title: "AWS basics and deploying everything",
+          goal: "Put DocMind on a public HTTPS address and give every other project a live demo link.",
           groups: [
             [
               "AWS",
@@ -1630,27 +2107,42 @@
                 "billing alerts",
               ],
             ],
-            ["Deploy", ["Docker on EC2", "domain & HTTPS", "secrets in env"]],
+            [
+              "Deploy",
+              [
+                "Docker on EC2",
+                "domain & HTTPS",
+                "secrets in env",
+                "free hosting for demos",
+              ],
+            ],
           ],
           tasks: [
             "Create an AWS account, turn on MFA and set a billing alert (for example $5)",
-            "Push your image to ECR and run it on an EC2 instance",
-            "Move uploads to S3; use RDS, or PostgreSQL in Docker on the same instance to save cost",
-            "Put HTTPS in front with Caddy or nginx and Let's Encrypt",
-            "DSA: 4 Medium problems",
+            [
+              "Push the DocMind image to ECR and run it on an EC2 instance",
+              "doc",
+            ],
+            [
+              "Move uploads to S3; use RDS, or PostgreSQL in Docker on the same instance to save cost",
+              "doc",
+            ],
+            ["Put HTTPS in front with Caddy or nginx and Let's Encrypt", "doc"],
+            "Deploy the extractor, support agent and Text-to-SQL demos on Hugging Face Spaces or another free host",
+            "DSA: 3 Medium problems",
           ],
-          deliver: "The flagship app is live on a public HTTPS URL.",
+          deliver:
+            "DocMind live on HTTPS, and every project has a working demo link.",
           res: [
             ["AWS free tier", "https://aws.amazon.com/free/"],
             ["AWS Skill Builder", "https://skillbuilder.aws/"],
             ["Caddy docs", "https://caddyserver.com/docs/"],
+            ["Hugging Face Spaces", "https://huggingface.co/docs/hub/spaces"],
           ],
-          tip: "Use a small instance and a hosted LLM API for the live demo. GPU instances are expensive.",
+          tip: "Use a small instance and a hosted LLM API for live demos. GPU instances are expensive.",
         },
         {
-          id: "w18",
-          start: "2027-02-01",
-          end: "2027-02-07",
+          id: "w19",
           phase: "P4",
           title: "CI/CD with GitHub Actions",
           goal: "Every push is checked automatically and every merge deploys itself.",
@@ -1660,14 +2152,18 @@
             ["Releases", ["tags", "versioning", "rollback"]],
           ],
           tasks: [
-            "Add a workflow that runs Ruff, mypy and pytest on every push and pull request",
-            "Build and push the Docker image on merge to main",
-            "Deploy to EC2 automatically on merge",
-            "Add the build status badge to the README",
-            "Practice one rollback to a previous image",
+            [
+              "Add a workflow that runs Ruff, mypy and pytest on every push and pull request",
+              "doc",
+            ],
+            ["Build and push the Docker image on merge to main", "doc"],
+            ["Deploy to EC2 automatically on merge", "doc"],
+            ["Practice one rollback to a previous image", "doc"],
+            "Add the same lint and test workflow to your other project repos",
             "DSA: 4 Medium problems",
           ],
-          deliver: "A push to main deploys automatically.",
+          deliver:
+            "A push to main deploys DocMind automatically, and all repos show green CI badges.",
           res: [
             ["GitHub Actions docs", "https://docs.github.com/en/actions"],
             [
@@ -1678,12 +2174,10 @@
           tip: "Having done a rollback once gives you a concrete story for the question about what happens when a deploy breaks.",
         },
         {
-          id: "w19",
-          start: "2027-02-08",
-          end: "2027-02-14",
+          id: "w20",
           phase: "P4",
           title: "MLOps and monitoring",
-          goal: "Run the product like a real service: measured, monitored and documented.",
+          goal: "Run DocMind like a real service: measured, monitored and documented.",
           groups: [
             [
               "Tracking",
@@ -1701,14 +2195,17 @@
             ["Quality", ["logging questions", "regression evals in CI"]],
           ],
           tasks: [
-            "Add a metrics endpoint or dashboard for latency, errors and LLM cost",
-            "Add thumbs up / down feedback stored in PostgreSQL",
-            "Run your eval set in CI whenever prompts or models change",
-            "Write ARCHITECTURE.md with a diagram of the whole system",
-            "Record a 2-minute demo video",
+            [
+              "Add a metrics endpoint or dashboard for latency, errors and LLM cost",
+              "doc",
+            ],
+            ["Add thumbs up / down feedback stored in PostgreSQL", "doc"],
+            ["Run the eval set in CI whenever prompts or models change", "doc"],
+            ["Write ARCHITECTURE.md with a diagram of the whole system", "doc"],
+            ["Record a 2-minute demo video", "doc"],
           ],
           deliver:
-            "The flagship product is complete: deployed, tested, evaluated and monitored. Phase 4 complete.",
+            "DocMind is complete: deployed, tested, evaluated and monitored. Phase 4 complete.",
           res: [
             ["Made With ML", "https://madewithml.com/"],
             ["MLflow docs", "https://mlflow.org/docs/latest/"],
@@ -1720,12 +2217,10 @@
           tip: "A README, an architecture diagram and a demo video are what recruiters actually look at.",
         },
         {
-          id: "w20",
-          start: "2027-02-15",
-          end: "2027-02-21",
+          id: "w21",
           phase: "P5",
-          title: "Classical ML for interviews",
-          goal: "Answer classical ML questions confidently with examples.",
+          title: "Classical ML + Fraud Detection Service",
+          goal: "Master classical ML for interviews by building a real model on difficult, imbalanced data.",
           groups: [
             [
               "Models",
@@ -1735,7 +2230,6 @@
                 "random forest",
                 "XGBoost",
                 "SVM",
-                "KNN",
                 "K-Means",
                 "PCA",
               ],
@@ -1746,42 +2240,55 @@
                 "bias-variance",
                 "L1 / L2 regularization",
                 "cross-validation",
-                "class imbalance",
                 "feature engineering",
                 "data leakage",
               ],
             ],
             [
-              "Metrics",
-              ["precision / recall / F1", "ROC-AUC", "PR curve", "RMSE / MAE"],
+              "Imbalanced data",
+              ["class weights", "SMOTE", "PR-AUC", "threshold tuning"],
             ],
+            ["Explainability", ["SHAP", "feature importance"]],
           ],
           tasks: [
             "Watch StatQuest videos on the topics you are least sure about",
-            "Build one scikit-learn pipeline end to end (for example Bangla news categories: TF-IDF + logistic regression vs XGBoost)",
-            "Write a one-page cheat sheet of metrics and when to use each",
+            [
+              "Load the Kaggle credit card fraud dataset; build a logistic regression baseline and an XGBoost model with proper cross-validation",
+              "fraud",
+            ],
+            [
+              "Handle class imbalance (class weights or SMOTE) and pick the decision threshold from the PR curve",
+              "fraud",
+            ],
+            [
+              "Explain predictions with SHAP and add the plots to the README",
+              "fraud",
+            ],
+            [
+              "Serve the model with FastAPI and Docker, and add a simple data-drift check",
+              "fraud",
+            ],
             "Answer 30 questions from the ML Interviews Book out loud",
-            "DSA: 4 Medium problems",
+            "DSA: 3 Medium problems",
           ],
           deliver:
-            "A small scikit-learn project on GitHub and your own cheat sheet.",
+            "Fraud Detection Service on GitHub with metrics, SHAP explanations and a live API.",
           res: [
-            ["StatQuest", "https://www.youtube.com/@statquest"],
             [
-              "scikit-learn user guide",
-              "https://scikit-learn.org/stable/user_guide.html",
+              "Credit card fraud dataset",
+              "https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud",
             ],
+            ["SHAP docs", "https://shap.readthedocs.io/"],
+            ["StatQuest", "https://www.youtube.com/@statquest"],
             ["ML Interviews Book", "https://huyenchip.com/ml-interviews-book/"],
           ],
-          tip: "Practice explaining each concept in two minutes with an example. That is the interview format.",
+          tip: "Explain why accuracy is useless on this dataset. That single answer impresses interviewers.",
         },
         {
-          id: "w21",
-          start: "2027-02-22",
-          end: "2027-02-28",
+          id: "w22",
           phase: "P5",
-          title: "Deep learning and transformer theory",
-          goal: "Explain the theory behind your own work clearly, including your thesis decisions.",
+          title: "Deep learning theory + Object Detection App",
+          goal: "Explain the theory behind your work clearly and add computer vision to your portfolio.",
           groups: [
             [
               "Deep learning",
@@ -1794,7 +2301,17 @@
                 "mixed precision",
               ],
             ],
-            ["Vision", ["CNNs", "pooling", "transfer learning", "ResNet"]],
+            [
+              "Vision",
+              [
+                "CNNs",
+                "transfer learning",
+                "object detection",
+                "YOLO",
+                "mAP",
+                "data augmentation",
+              ],
+            ],
             [
               "Transformers",
               [
@@ -1809,49 +2326,55 @@
           ],
           tasks: [
             "Derive attention on paper and explain it out loud in 3 minutes",
-            "Fine-tune a pretrained ResNet on a small image dataset (one evening is enough)",
+            [
+              "Pick a practical detection task (safety helmets, PPE, or shelf products) and get a labeled dataset from Roboflow Universe",
+              "vision",
+            ],
+            [
+              "Fine-tune a YOLO model, report mAP, and study the failure cases",
+              "vision",
+            ],
+            [
+              "Deploy an upload-and-detect demo with Gradio on Hugging Face Spaces",
+              "vision",
+            ],
             "Prepare thesis answers: why Unigram over BPE, the grapheme-aware embedding, 70M vs 104M",
-            "Answer 30 deep learning and LLM questions out loud",
-            "Write a 3-minute story for each of your 3 projects",
+            "Write a 3-minute story for each of your projects",
           ],
           deliver:
-            "You can explain every project and every core concept. Phase 5 complete.",
+            "Object Detection App live, and you can explain every project and core concept. Phase 5 complete.",
           res: [
+            ["Ultralytics YOLO docs", "https://docs.ultralytics.com/"],
+            ["Roboflow Universe", "https://universe.roboflow.com/"],
             ["Karpathy: Zero to Hero", "https://karpathy.ai/zero-to-hero.html"],
             [
               "The Illustrated Transformer",
               "https://jalammar.github.io/illustrated-transformer/",
             ],
-            ["CS231n notes", "https://cs231n.github.io/"],
-            ["Attention Is All You Need", "https://arxiv.org/abs/1706.03762"],
           ],
-          tip: "Your thesis is your best interview topic. Practice it the most.",
+          tip: "Your thesis is still your best interview topic. Practice it the most.",
         },
         {
-          id: "w22",
-          start: "2027-03-01",
-          end: "2027-03-07",
+          id: "w23",
           phase: "P6",
           title: "CV and portfolio polish",
-          goal: "Turn your work into a CV and profiles that get replies.",
+          goal: "Turn your projects into a CV and profiles that get replies.",
           groups: [
             ["CV", ["one page", "numbers in every bullet", "projects first"]],
             [
               "Profiles",
               [
-                "GitHub READMEs",
+                "pinned repos",
                 "LinkedIn headline & about",
                 "Hugging Face profile",
               ],
             ],
-            [
-              "Targets",
-              ["Dhaka AI / NLP companies", "remote roles", "Upwork niche"],
-            ],
+            ["Targets", ["Dhaka AI companies", "remote roles", "Upwork niche"]],
           ],
           tasks: [
-            "Write a one-page CV: flagship app, thesis, fine-tuned model, skills, with a number in every bullet",
-            "Clean every README: problem, architecture, results, live link, video",
+            "Pick your 4 strongest projects plus the thesis for the CV; use the CV bullets on the Projects page as a start",
+            "Write a one-page CV with a number in every bullet",
+            "Pin your 6 best repos on GitHub; every README has the problem, architecture, results, live link and video",
             "Update LinkedIn headline, about section and featured projects",
             "Make a list of 30 target companies (local and remote)",
             "Ask your supervisor and one teacher whether they can be references",
@@ -1865,18 +2388,16 @@
             ],
             ["Wellfound", "https://wellfound.com/"],
           ],
-          tip: "Rewrite the first 3 lines of the CV for each job you apply to.",
+          tip: "Reorder the CV projects for each job: agents first for agent roles, DocMind first for RAG roles, fraud and vision for general ML roles.",
         },
         {
-          id: "w23",
-          start: "2027-03-08",
-          end: "2027-03-14",
+          id: "w24",
           phase: "P6",
-          title: "ML system design",
-          goal: "Handle open-ended design interviews with a clear structure.",
+          title: "ML system design + open source",
+          goal: "Handle open-ended design interviews and add a public open-source contribution.",
           groups: [
             [
-              "Framework",
+              "Design framework",
               [
                 "requirements",
                 "data flow",
@@ -1892,35 +2413,43 @@
               [
                 "RAG chatbot for 10k users",
                 "search ranking",
-                "content moderation",
+                "fraud detection at scale",
                 "cut LLM cost in half",
               ],
+            ],
+            [
+              "Open source",
+              ["good first issues", "docs fixes", "small bug fixes"],
             ],
           ],
           tasks: [
             "Study 4 ML system design case studies",
             "Practice 3 designs on paper, 45 minutes each",
-            "Do 1 mock interview with a friend or online",
+            [
+              "Find a docs issue or small bug in a library you used (Hugging Face, FastAPI, LangChain, Ultralytics) and open a pull request",
+              "oss",
+            ],
+            ["Respond to review comments until it is merged", "oss"],
             "Send 10 more applications",
-            "DSA: 4 Medium problems",
+            "DSA: 3 Medium problems",
           ],
-          deliver: "3 written designs and 20 applications sent in total.",
+          deliver:
+            "3 written designs, an open-source PR and 20 applications sent in total.",
           res: [
             [
               "ML systems design (Chip Huyen)",
               "https://github.com/chiphuyen/machine-learning-systems-design",
             ],
+            ["Good First Issue", "https://goodfirstissue.dev/"],
             ["Book: Designing Machine Learning Systems", null],
           ],
           tip: "Start every design by asking about scale, latency and budget before drawing anything.",
         },
         {
-          id: "w24",
-          start: "2027-03-15",
-          end: "2027-03-21",
+          id: "w25",
           phase: "P6",
-          title: "Mock interviews and freelancing setup",
-          goal: "Get comfortable under interview pressure and open a second income channel.",
+          title: "Mock interviews, freelancing and exam balance",
+          goal: "Get comfortable under interview pressure, open a second income channel, and keep momentum during exams.",
           groups: [
             [
               "Interviews",
@@ -1933,17 +2462,30 @@
             ],
             [
               "Freelance",
-              ["Upwork profile", "niche: Bangla NLP, RAG", "portfolio links"],
+              [
+                "Upwork profile",
+                "niche: RAG, agents, document extraction",
+                "demo links",
+              ],
+            ],
+            [
+              "During exams",
+              ["1 hour a day", "recruiter replies", "application tracker"],
             ],
           ],
           tasks: [
             "Do 2 mock interviews (one coding, one ML)",
-            "Record yourself explaining the thesis and fix the weak parts",
+            "Record yourself explaining DocMind and the thesis; fix the weak parts",
             "Follow up on earlier applications and send 10 more",
-            "Create an Upwork profile focused on Bangla NLP and RAG systems",
+            "Create an Upwork profile built around document extraction, RAG and agents, with your demo links",
             "DSA: 3 Medium problems",
+            "Keep 1 hour a day for DSA and interview review during exams",
+            "Reply to every recruiter message within 24 hours",
+            "Track every application: company, date, stage",
+            "Check the thesis paper status with your supervisor",
           ],
-          deliver: "30 applications sent and an Upwork profile live.",
+          deliver:
+            "30 applications sent, an Upwork profile live, and no lost progress during exams. The 6-month plan is complete.",
           res: [
             [
               "Tech Interview Handbook",
@@ -1951,35 +2493,7 @@
             ],
             ["Upwork", "https://www.upwork.com/"],
           ],
-          tip: "Behavioral questions matter too. Prepare 4 short stories: a hard bug, a deadline, a disagreement, a failure.",
-        },
-        {
-          id: "w25",
-          start: "2027-03-22",
-          end: "2027-03-28",
-          phase: "P6",
-          title: "Exam season balance",
-          goal: "Keep momentum during exams without hurting your results.",
-          groups: [
-            [
-              "Keep going",
-              [
-                "1 hour a day",
-                "DSA review",
-                "recruiter replies",
-                "application tracker",
-              ],
-            ],
-          ],
-          tasks: [
-            "Keep 1 hour a day for DSA and interview review",
-            "Reply to every recruiter message within 24 hours",
-            "Track every application: company, date, stage",
-            "Check the thesis paper status with your supervisor",
-          ],
-          deliver: "No lost progress during exams.",
-          res: [],
-          tip: "Exams come first this month. Light, steady job work is enough.",
+          tip: "Exams come first. Prepare 4 short behavioral stories (a hard bug, a deadline, a disagreement, a failure) and keep the rest light.",
         },
         {
           id: "m4",
@@ -2009,7 +2523,7 @@
           ],
           deliver: "Several interview processes running.",
           res: [],
-          tip: "Track every interview question you could not answer and study it that evening.",
+          tip: "Write down every interview question you could not answer and study it that evening.",
         },
         {
           id: "m5",
@@ -2033,7 +2547,7 @@
           tasks: [
             "Compare offers on the work itself, hours, mentorship and pay",
             "Finish one small freelance job and get a review",
-            "Add one feature to the flagship app based on real user feedback",
+            "Add one feature to DocMind based on real user feedback",
             "Submit the thesis paper (or a workshop version) with your supervisor",
           ],
           deliver: "An offer accepted, or a clear shortlist.",
@@ -2101,6 +2615,15 @@
         "November",
         "December",
       ];
+      const iso = (d) => d.toISOString().slice(0, 10);
+      const START = Date.UTC(2026, 9, 5);
+      WEEKS.forEach((w, i) => {
+        if (!w.month) {
+          w.num = i + 1;
+          w.start = iso(new Date(START + i * 7 * 864e5));
+          w.end = iso(new Date(START + (i * 7 + 6) * 864e5));
+        }
+      });
       const p = (s) => ({
         y: +s.slice(0, 4),
         m: +s.slice(5, 7),
@@ -2120,11 +2643,14 @@
           (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c],
         );
       const tid = (w, i) => `${w.id}-t${i + 1}`;
+      const tText = (t) => (Array.isArray(t) ? t[0] : t);
+      const tProj = (t) => (Array.isArray(t) ? t[1] : null);
+      WEEKS.forEach((w) => {
+        w.projs = [...new Set(w.tasks.map(tProj).filter(Boolean))];
+      });
 
-      /* months by week start */
       const MONTHS = [];
-      WEEKS.forEach((w, i) => {
-        w.num = w.month ? null : i + 1;
+      WEEKS.forEach((w) => {
         const a = p(w.start),
           key = `${a.y}-${a.m}`;
         let m = MONTHS.find((x) => x.key === key);
@@ -2141,20 +2667,23 @@
       });
       const MONTH_INTRO = {
         "2026-10":
-          "Engineering foundations, then SQL and FastAPI. The flagship backend begins.",
+          "Python basics, production Python, Git and Linux, then SQL. Month 1 of 6.",
         "2026-11":
-          "Finish the backend: database layer, auth, tests and Docker. Then LLM engineering starts.",
+          "DocMind's backend: FastAPI, database, auth, tests and Docker. Month 2 of 6.",
         "2026-12":
-          "The core of AI engineering: RAG, evaluation and agents on top of your backend.",
+          "LLM APIs with the Smart Document Extractor, then RAG and evaluation in DocMind. Month 3 of 6.",
         "2027-1":
-          "Fine-tune and serve your own models, release BanglaWriteLM, then deploy to the cloud.",
+          "Customer Support Agent and Text-to-SQL, then fine-tuning your own Bangla model. Month 4 of 6.",
         "2027-2":
-          "CI/CD and monitoring finish the product. Then two weeks of interview theory.",
+          "Serve your models and release BanglaWriteLM, then deploy everything with CI/CD and monitoring. Month 5 of 6.",
         "2027-3":
-          "CV, applications, system design and mock interviews, balanced with BSc exams.",
-        "2027-4": "Applications and interviews at a steady weekly rhythm.",
-        "2027-5": "Offers, first freelance work and the thesis paper.",
-        "2027-6": "Start the job and keep the Fall 2028 MSc plan moving.",
+          "Fraud detection and object detection, then CV, system design, open source and mock interviews, balanced with exams. Month 6 of 6.",
+        "2027-4":
+          "After the 6 months: applications and interviews at a steady weekly rhythm.",
+        "2027-5":
+          "After the 6 months: offers, first freelance work and the thesis paper.",
+        "2027-6":
+          "After the 6 months: start the job and keep the Fall 2028 MSc plan moving.",
       };
       MONTHS.forEach((m) => {
         m.intro = MONTH_INTRO[m.key] || "";
@@ -2171,7 +2700,7 @@
         nowWeek && nowWeek.id === w.id && todayISO >= w.start;
 
       /* ---------- state ---------- */
-      const LKEY = "aiEngRoadmap.v1";
+      const LKEY = "aiEngRoadmap.v2";
       let checked = {};
       try {
         checked = JSON.parse(localStorage.getItem(LKEY) || "{}").checked || {};
@@ -2185,7 +2714,21 @@
       const total = () => WEEKS.reduce((n, w) => n + w.tasks.length, 0);
       const doneIn = (w) => w.tasks.filter((_, i) => checked[tid(w, i)]).length;
       const pct = (a, b) => (b ? Math.round((a * 100) / b) : 0);
+      function projStats(pid) {
+        let n = 0,
+          d = 0;
+        WEEKS.forEach((w) =>
+          w.tasks.forEach((t, i) => {
+            if (pid ? tProj(t) === pid : tProj(t)) {
+              n++;
+              if (checked[tid(w, i)]) d++;
+            }
+          }),
+        );
+        return { n, d };
+      }
 
+      const PROJ_VIEW = -1;
       let curMonth = Math.max(
         0,
         MONTHS.findIndex((m) =>
@@ -2205,9 +2748,21 @@
       }
       function renderSide() {
         const side = document.getElementById("side");
-        side.innerHTML = MONTHS.map(
-          (m, mi) => `
-    <div class="mo${mi === curMonth ? " active" : ""}" data-m="${mi}">
+        side.innerHTML =
+          `
+    <div class="mo proj-entry${curMonth === PROJ_VIEW ? " active" : ""}">
+      <button class="mo-btn" type="button" data-month="${PROJ_VIEW}">
+        <span class="mo-name">Projects <span class="count">${PROJECT_ORDER.length}</span></span><span class="mo-pct" data-ppct-all>0%</span>
+        <span class="mo-bar"><i data-pbar-all></i></span>
+      </button>
+    </div>
+    <div class="side-lbl">6-month plan</div>` +
+          MONTHS.map(
+            (
+              m,
+              mi,
+            ) => `${m.weeks[0].month && !MONTHS[mi - 1].weeks[0].month ? `<div class="side-lbl">After the 6 months</div>` : ""}
+    <div class="mo${mi === curMonth ? " active" : ""}">
       <button class="mo-btn" type="button" data-month="${mi}" aria-expanded="${mi === curMonth}">
         <span class="mo-name">${esc(m.label)}</span><span class="mo-pct" data-mpct="${mi}">0%</span>
         <span class="mo-bar"><i data-mbar="${mi}"></i></span>
@@ -2224,18 +2779,56 @@
         .join("")}
       </ul>
     </div>`,
-        ).join("");
-        document.getElementById("strip").innerHTML = MONTHS.map(
-          (m, mi) =>
-            `<button type="button" role="tab" aria-selected="${mi === curMonth}" class="${mi === curMonth ? "active" : ""}" data-month="${mi}">${esc(m.label)} · <span data-spct="${mi}">0%</span></button>`,
-        ).join("");
+          ).join("");
+        document.getElementById("strip").innerHTML =
+          `<button type="button" role="tab" aria-selected="${curMonth === PROJ_VIEW}" class="${curMonth === PROJ_VIEW ? "active" : ""}" data-month="${PROJ_VIEW}">Projects</button>` +
+          MONTHS.map(
+            (m, mi) =>
+              `<button type="button" role="tab" aria-selected="${mi === curMonth}" class="${mi === curMonth ? "active" : ""}" data-month="${mi}">${esc(m.label)} · <span data-spct="${mi}">0%</span></button>`,
+          ).join("");
       }
-      function ring(w) {
+      function ring(key, size = 46) {
         const r = 19,
           c = 2 * Math.PI * r;
-        return `<svg class="ring" viewBox="0 0 46 46" aria-hidden="true"><circle class="bg" cx="23" cy="23" r="${r}"/><circle class="fg" data-ring="${w.id}" cx="23" cy="23" r="${r}" stroke-dasharray="${c.toFixed(2)}" stroke-dashoffset="${c.toFixed(2)}" transform="rotate(-90 23 23)"/><text x="23" y="27" text-anchor="middle" data-rt="${w.id}">0%</text></svg>`;
+        return `<svg class="ring" viewBox="0 0 46 46" style="width:${size}px;height:${size}px" aria-hidden="true"><circle class="bg" cx="23" cy="23" r="${r}"/><circle class="fg" data-ring="${key}" cx="23" cy="23" r="${r}" stroke-dasharray="${c.toFixed(2)}" stroke-dashoffset="${c.toFixed(2)}" transform="rotate(-90 23 23)"/><text x="23" y="27" text-anchor="middle" data-rt="${key}">0%</text></svg>`;
+      }
+      function weekLabel(w) {
+        return w.month ? MONFULL[p(w.start).m - 1] : `Week ${w.num}`;
+      }
+      function renderProjects() {
+        const tagN = new Set(PROJECT_ORDER.flatMap((k) => PROJECTS[k].tags))
+          .size;
+        document.getElementById("month").innerHTML = `
+    <div class="mhead">
+      <div><h2>Portfolio projects</h2><p>${PROJECT_ORDER.length} projects across LLM apps, agents, data, classical ML, computer vision, your own models and open source. Each one is built inside the weekly plan, so its progress comes from those weeks' tasks.</p></div>
+      <div class="mstat"><b data-ppct-head>0%</b><span data-pn-head></span></div>
+    </div>
+    <div class="pgrid">${PROJECT_ORDER.map((k) => {
+      const pr = PROJECTS[k];
+      const weeks = WEEKS.filter((w) => w.projs.includes(k));
+      return `<article class="pcard${k === "doc" ? " flagship" : ""}">
+        <div class="ptop">
+          <div style="min-width:0">
+            <div class="ptags">${pr.tags.map((t) => `<span class="ptag${t === "Flagship" ? " hot" : ""}">${esc(t)}</span>`).join("")}</div>
+            <h3 class="pname">${esc(pr.name)}</h3>
+          </div>
+          <div class="pring">${ring("p-" + k, 52)}<span class="mo-pct" data-pcount="${k}"></span></div>
+        </div>
+        <p class="ppitch">${esc(pr.pitch)}</p>
+        <p class="pwhy"><b>Why it helps your profile:</b> ${esc(pr.why)}</p>
+        <div class="tg-chips">${pr.stack.map((s) => `<span class="tc">${esc(s)}</span>`).join("")}</div>
+        <div class="pweeks"><span class="lbl" style="margin:0">Built in</span>${weeks.map((w) => `<button type="button" class="wkchip" data-week="${w.id}">${esc(weekLabel(w))}</button>`).join("")}</div>
+        <div class="pbullet"><span class="lbl" style="margin:0 0 4px">CV bullet (fill in your numbers)</span>${esc(pr.bullet)}</div>
+      </article>`;
+    }).join("")}
+    </div>
+    <p class="empty-note">Only 3 of these are Bangla-specific (fine-tuned model, BanglaWriteLM and DocMind's Bangla support). The rest show general industry skills that any company hires for.</p>`;
       }
       function renderMonth() {
+        if (curMonth === PROJ_VIEW) {
+          renderProjects();
+          return;
+        }
         const m = MONTHS[curMonth];
         const phases = [...new Set(m.weeks.map((w) => w.phase))]
           .map((k) => PHASES[k].name)
@@ -2251,21 +2844,22 @@
         return `<article class="week${openSet.has(w.id) ? " open" : ""}${isNow(w) ? " now" : ""}" id="${w.id}">
         <button class="whead" type="button" data-toggle="${w.id}" aria-expanded="${openSet.has(w.id)}" aria-controls="b-${w.id}">
           <div class="wmeta">
-            ${w.month ? `<span class="wnum">Month plan</span>` : `<span class="wnum">Week ${w.num}</span>`}
+            <span class="wnum">${w.month ? "Month plan" : "Week " + w.num}</span>
             <span>${esc(range(w))}</span>
             <span class="chip-phase" style="--c:var(${ph.c})"><i class="dot"></i>${esc(ph.name)}</span>
             ${isNow(w) ? `<span class="nowtag">This week</span>` : ""}
           </div>
           <h3 class="wtitle">${esc(w.title)}</h3>
-          <div class="wprog"><span class="mo-pct" data-wcount="${w.id}"></span>${ring(w)}
+          <div class="wprog"><span class="mo-pct" data-wcount="${w.id}"></span>${ring(w.id)}
             <svg class="chev" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 8l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         </button>
         <div class="wbody" id="b-${w.id}">
           <p class="goal"><b>Goal:</b> ${esc(w.goal)}</p>
+          ${w.projs.length ? `<div class="builds"><span class="lbl" style="margin:0">Builds</span>${w.projs.map((k) => `<button type="button" class="projchip" data-month="${PROJ_VIEW}">${esc(PROJECTS[k].name)}</button>`).join("")}</div>` : ""}
           <div class="lbl">Topics</div>
           <div class="tgroups">${w.groups.map(([g, ts]) => `<div class="tg"><div class="tg-name">${esc(g)}</div><div class="tg-chips">${ts.map((t) => `<span class="tc">${esc(t)}</span>`).join("")}</div></div>`).join("")}</div>
           <div class="lbl">Tasks</div>
-          <ul class="tasks">${w.tasks.map((t, i) => `<li><label class="task"><input type="checkbox" id="cb-${tid(w, i)}" data-task="${tid(w, i)}"${checked[tid(w, i)] ? " checked" : ""}><span>${esc(t)}</span></label></li>`).join("")}</ul>
+          <ul class="tasks">${w.tasks.map((t, i) => `<li><label class="task"><input type="checkbox" id="cb-${tid(w, i)}" data-task="${tid(w, i)}"${checked[tid(w, i)] ? " checked" : ""}><span>${tProj(t) ? `<em class="ptask">${esc(PROJECTS[tProj(t)].name.split(":")[0])}</em> ` : ""}${esc(tText(t))}</span></label></li>`).join("")}</ul>
           <div class="wk-actions"><button class="linkbtn" type="button" data-all="${w.id}">Mark all done</button></div>
           <div class="deliver"><div class="lbl">Done when</div>${esc(w.deliver)}</div>
           ${w.res.length ? `<div class="lbl">Resources</div><div class="res">${w.res.map(([l, u]) => (u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(l)}</a>` : `<span>${esc(l)}</span>`)).join("")}</div>` : ""}
@@ -2275,6 +2869,18 @@
       })
       .join("")}
     ${curMonth < MONTHS.length - 1 ? `<button class="btn" type="button" data-month="${curMonth + 1}" style="margin-top:6px">Next: ${esc(MONTHS[curMonth + 1].full)} →</button>` : `<p class="empty-note">End of the roadmap. Good luck with the job and the MSc.</p>`}`;
+      }
+      function setRing(key, d, n) {
+        const r = document.querySelector(`[data-ring="${key}"]`);
+        if (r) {
+          const c = 2 * Math.PI * 19;
+          r.setAttribute(
+            "stroke-dashoffset",
+            (c * (1 - (n ? d / n : 0))).toFixed(2),
+          );
+        }
+        const rt = document.querySelector(`[data-rt="${key}"]`);
+        if (rt) rt.textContent = `${pct(d, n)}%`;
       }
       function updateProgress() {
         const T = total();
@@ -2288,13 +2894,7 @@
             e.textContent = d === n ? "✓" : `${pc}%`;
             e.parentElement.classList.toggle("done", d === n);
           });
-          const r = document.querySelector(`[data-ring="${w.id}"]`);
-          if (r) {
-            const c = 2 * Math.PI * 19;
-            r.setAttribute("stroke-dashoffset", (c * (1 - d / n)).toFixed(2));
-          }
-          const rt = document.querySelector(`[data-rt="${w.id}"]`);
-          if (rt) rt.textContent = `${pc}%`;
+          setRing(w.id, d, n);
           const wc = document.querySelector(`[data-wcount="${w.id}"]`);
           if (wc) wc.textContent = `${d}/${n}`;
           const ab = document.querySelector(`[data-all="${w.id}"]`);
@@ -2318,6 +2918,22 @@
             if (hn) hn.textContent = `${d} of ${n} tasks`;
           }
         });
+        PROJECT_ORDER.forEach((k) => {
+          const { n, d } = projStats(k);
+          setRing("p-" + k, d, n);
+          const c = document.querySelector(`[data-pcount="${k}"]`);
+          if (c) c.textContent = `${d}/${n}`;
+        });
+        const all = projStats(null),
+          ap = pct(all.d, all.n);
+        const pa = document.querySelector("[data-ppct-all]");
+        if (pa) pa.textContent = `${ap}%`;
+        const pb = document.querySelector("[data-pbar-all]");
+        if (pb) pb.style.width = `${ap}%`;
+        const ph = document.querySelector("[data-ppct-head]");
+        if (ph) ph.textContent = `${ap}%`;
+        const pn = document.querySelector("[data-pn-head]");
+        if (pn) pn.textContent = `${all.d} of ${all.n} project tasks`;
         const op = pct(D, T);
         document.getElementById("ovPct").textContent = `${op}%`;
         document.getElementById("ovBar").style.width = `${op}%`;
@@ -2351,14 +2967,14 @@
 
       /* ---------- events ---------- */
       document.addEventListener("click", (e) => {
-        const mb = e.target.closest("[data-month]");
-        if (mb) {
-          selectMonth(+mb.dataset.month);
-          return;
-        }
         const wb = e.target.closest("[data-week]");
         if (wb) {
           goWeek(wb.dataset.week);
+          return;
+        }
+        const mb = e.target.closest("[data-month]");
+        if (mb) {
+          selectMonth(+mb.dataset.month);
           return;
         }
         const tg = e.target.closest("[data-toggle]");
@@ -2440,7 +3056,7 @@
             syncEl.textContent = "Saved in this browser only";
             return;
           }
-          ref = db.doc(`data/users/${uid}/roadmap`);
+          ref = db.doc(`data/users/${uid}/roadmap-v2`);
           syncEl.textContent = "Syncing…";
           ref.onSnapshot(
             (snap) => {
